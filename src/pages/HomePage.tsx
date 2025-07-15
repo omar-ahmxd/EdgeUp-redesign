@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense, lazy } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   CheckCircle, 
@@ -20,6 +20,8 @@ import { useCMS } from '../context/CMSContext';
 import AnimatedCounter from '../components/common/AnimatedCounter';
 import IntersectionObserver from '../components/common/IntersectionObserver';
 
+const Spline = lazy(() => import('@splinetool/react-spline'));
+
 const HomePage: React.FC = () => {
   const { getContentBlocks } = useCMS();
   const homePageBlocks = getContentBlocks('home');
@@ -29,47 +31,6 @@ const HomePage: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = "EdgeUp - AI-Powered Learning Platform for Institutions";
-    
-    // Load Spline viewer script
-    const script = document.createElement('script');
-    script.type = 'module';
-    script.src = 'https://unpkg.com/@splinetool/viewer@1.10.29/build/spline-viewer.js';
-    script.async = true;
-    
-    // Add load event listener
-    script.onload = () => {
-      console.log('Spline viewer script loaded successfully');
-      setSplineLoaded(true);
-    };
-    
-    script.onerror = () => {
-      console.error('Failed to load Spline viewer script');
-      setSplineError(true);
-    };
-    
-    document.head.appendChild(script);
-    
-    // Also check if Spline viewer is already loaded (from cache)
-    if (window.customElements && window.customElements.get('spline-viewer')) {
-      setSplineLoaded(true);
-    }
-    
-    // Timeout fallback after 10 seconds
-    const timeout = setTimeout(() => {
-      if (!splineLoaded && !splineError) {
-        console.warn('Spline viewer loading timeout');
-        setSplineError(true);
-      }
-    }, 10000);
-    
-    return () => {
-      clearTimeout(timeout);
-      // Cleanup script on unmount
-      const existingScript = document.querySelector('script[src*="spline-viewer.js"]');
-      if (existingScript) {
-        document.head.removeChild(existingScript);
-      }
-    };
   }, []);
 
   // Stats data
@@ -222,33 +183,32 @@ const HomePage: React.FC = () => {
 
               {/* Right side - Spline Animation */}
               <div className="relative animate-fade-in-right delay-400 z-10 h-[400px] lg:h-[600px] w-full order-first lg:order-last" style={{ background: 'transparent' }}>
-                {!splineError ? (
-                  <>
-                    <spline-viewer 
-                      url="https://prod.spline.design/rMylZE0LtWz1dT3B/scene.splinecode"
-                      className="w-full h-full"
-                      style={{
-                        background: 'transparent',
-                        backgroundColor: 'transparent',
-                        border: 'none',
-                        outline: 'none',
-                        boxShadow: 'none',
-                        borderRadius: '0',
-                        padding: '0',
-                        margin: '0',
-                        display: splineLoaded ? 'block' : 'none'
-                      }}
-                    ></spline-viewer>
-                    {!splineLoaded && (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-center">
-                          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-400 mx-auto mb-4"></div>
-                          <p className="text-purple-400">Loading 3D animation...</p>
-                        </div>
-                      </div>
-                    )}
-                  </>
-                ) : (
+                <Suspense fallback={
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-400 mx-auto mb-4"></div>
+                      <p className="text-purple-400">Loading 3D Bot...</p>
+                    </div>
+                  </div>
+                }>
+                  <Spline 
+                    scene="https://prod.spline.design/rMylZE0LtWz1dT3B/scene.splinecode"
+                    className="w-full h-full"
+                    style={{
+                      background: 'transparent',
+                      backgroundColor: 'transparent',
+                    }}
+                    onLoad={() => {
+                      console.log('Spline scene loaded successfully');
+                      setSplineLoaded(true);
+                    }}
+                    onError={(error) => {
+                      console.error('Spline loading error:', error);
+                      setSplineError(true);
+                    }}
+                  />
+                </Suspense>
+                {splineError && (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
                       <div className="w-full h-full bg-gradient-to-br from-purple-100 to-purple-50 rounded-2xl flex items-center justify-center">
