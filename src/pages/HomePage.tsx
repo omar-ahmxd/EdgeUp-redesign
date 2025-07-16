@@ -137,9 +137,10 @@ const HomePage: React.FC = () => {
         {/* Hero Section with Dashboard */}
         <section className="min-h-screen relative z-10">
           <div className="container-custom">
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-screen py-16 lg:py-20">
-              {/* Left side - Content */}
-              <div className="space-y-6 lg:space-y-8 relative z-20">
+            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-center min-h-screen py-16 lg:py-20">
+              
+              {/* Mobile: Animation first, Desktop: Content first */}
+              <div className="order-2 lg:order-1 space-y-6 lg:space-y-8 relative z-20 w-full text-center lg:text-left hero-text-content">
                 <div className="space-y-6 lg:space-y-8">
                   <div className="inline-flex items-center px-3 py-2 lg:px-4 lg:py-2 bg-white/20 backdrop-blur-md rounded-full text-[#094d88] text-sm font-medium border border-white/30 shadow-lg animate-fade-in-up mt-8 md:mt-12 lg:mt-16 xl:mt-20">
                     <span className="w-2 h-2 bg-[#10ac8b] rounded-full mr-2 animate-pulse"></span>
@@ -155,10 +156,10 @@ const HomePage: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up delay-500 relative z-30">
+                <div className="flex flex-col gap-4 animate-fade-in-up delay-500 relative z-30 hero-buttons">
                   <Link
                     to="/book-demo"
-                    className="group relative overflow-hidden bg-gradient-to-r from-[#10ac8b] to-[#0d9488] text-white px-6 py-3 lg:px-8 lg:py-4 rounded-2xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 text-center"
+                    className="group relative overflow-hidden bg-gradient-to-r from-[#10ac8b] to-[#0d9488] text-white px-6 py-3 lg:px-8 lg:py-4 rounded-2xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 text-center w-full sm:w-auto"
                   >
                     <span className="relative z-10 flex items-center justify-center">
                       Book a Demo
@@ -167,7 +168,7 @@ const HomePage: React.FC = () => {
                   </Link>
                   <Link
                     to="/product"
-                    className="group relative overflow-hidden border-2 border-[#094d88] text-[#094d88] px-6 py-3 lg:px-8 lg:py-4 rounded-2xl font-semibold hover:bg-[#094d88] hover:text-white transition-all duration-500 hover:scale-105 text-center"
+                    className="group relative overflow-hidden border-2 border-[#094d88] text-[#094d88] px-6 py-3 lg:px-8 lg:py-4 rounded-2xl font-semibold hover:bg-[#094d88] hover:text-white transition-all duration-500 hover:scale-105 text-center w-full sm:w-auto"
                   >
                     <span className="relative z-10 flex items-center justify-center">
                       <Play className="mr-2 h-4 w-4" />
@@ -178,8 +179,8 @@ const HomePage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Right side - Spline Animation */}
-              <div className="relative animate-fade-in-right delay-400 z-10 h-[400px] lg:h-[600px] w-full order-first lg:order-last" style={{ background: 'transparent' }}>
+              {/* Mobile: Animation first, Desktop: Animation last */}
+              <div className="order-1 lg:order-2 relative animate-fade-in-right delay-400 z-10 h-[300px] md:h-[400px] lg:h-[600px] w-full spline-container" style={{ background: 'transparent' }}>
                 <SplineViewer
                   sceneUrl="https://prod.spline.design/rMylZE0LtWz1dT3B/scene.splinecode"
                   className="w-full h-full"

@@ -45,6 +45,7 @@ const Header: React.FC = () => {
           ? 'bg-white/95 backdrop-blur-md shadow-lg py-2' 
           : 'bg-white/90 backdrop-blur-sm py-4'
       } animate-slide-in-top`}
+      style={{ position: 'fixed', top: 0, left: 0, right: 0 }}
     >
       <div className="container-custom">
         <div className="flex justify-between items-center">
@@ -108,13 +109,13 @@ const Header: React.FC = () => {
           </div>
           
           <nav className="flex-1 px-6 py-8">
-            <div className="space-y-6">
+            <div className="space-y-4">
               {navItems.map((item, index) => (
                 item.isButton ? (
                   <Link
                     key={index}
                     to={item.path}
-                    className="inline-flex items-center justify-center px-6 py-3 bg-[#10ac8b] text-white font-semibold rounded-lg hover:bg-[#0d9488] transition-all duration-300 hover:scale-105 w-full text-center block animate-fade-in-left"
+                    className="inline-flex items-center justify-center px-6 py-4 bg-[#10ac8b] text-white font-semibold rounded-lg hover:bg-[#0d9488] transition-all duration-300 w-full text-center text-lg min-h-[50px] animate-fade-in-left"
                     style={{ animationDelay: `${index * 0.1}s` }}
                     onClick={toggleMenu}
                   >
@@ -124,7 +125,7 @@ const Header: React.FC = () => {
                   <Link
                     key={index}
                     to={item.path}
-                    className={`block py-3 text-lg font-medium transition-colors duration-300 animate-fade-in-left ${
+                    className={`block py-4 text-lg font-medium transition-colors duration-300 min-h-[50px] flex items-center animate-fade-in-left ${
                       location.pathname === item.path 
                         ? 'text-[#094d88]' 
                         : 'text-gray-700 hover:text-[#094d88]'

@@ -607,78 +607,145 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Mobile responsive improvements */
 @media (max-width: 768px) {
-  .container-custom {
-    padding-left: 1rem;
-    padding-right: 1rem;
+  /* Force overflow-x hidden globally on mobile */
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
   
-  /* Mobile typography */
+  /* Container improvements */
+  .container-custom {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* Mobile header positioning */
+  header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 50 !important;
+  }
+  
+  /* Mobile hero section adjustments */
+  .min-h-screen {
+    min-height: auto !important;
+    padding-top: 5rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  /* Mobile hero layout - force single column */
+  .lg\\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  
+  .lg\\:flex {
+    flex-direction: column !important;
+  }
+  
+  /* Mobile text sizing with better readability */
   .text-4xl, .text-5xl, .text-6xl, .text-7xl {
-    font-size: 2rem !important;
+    font-size: 2.25rem !important;
     line-height: 1.2 !important;
+    margin-bottom: 1rem !important;
   }
   
   .text-3xl {
-    font-size: 1.75rem !important;
+    font-size: 1.875rem !important;
     line-height: 1.3 !important;
+    margin-bottom: 0.75rem !important;
   }
   
   .text-2xl {
     font-size: 1.5rem !important;
     line-height: 1.4 !important;
+    margin-bottom: 0.5rem !important;
   }
   
-  .text-xl {
+  .text-xl, .lg\\:text-xl {
     font-size: 1.125rem !important;
     line-height: 1.5 !important;
   }
   
-  /* Mobile spacing */
+  .text-lg, .lg\\:text-xl {
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+  }
+  
+  /* Mobile Spline animation sizing */
+  .h-\\[400px\\], .lg\\:h-\\[600px\\] {
+    height: 250px !important;
+    min-height: 250px !important;
+    max-height: 300px !important;
+  }
+  
+  /* Mobile order adjustments */
+  .order-first {
+    order: 1 !important;
+  }
+  
+  .lg\\:order-last {
+    order: 2 !important;
+  }
+  
+  /* Mobile spacing improvements */
   .section-padding {
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
   }
   
   .py-20 {
-    padding-top: 4rem !important;
-    padding-bottom: 4rem !important;
-  }
-  
-  .py-16 {
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
   }
   
-  /* Mobile grid adjustments */
-  .grid-cols-2 {
-    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  .py-16 {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
   }
   
-  .grid-cols-3 {
-    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  .py-12 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
   }
   
-  .grid-cols-4 {
-    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  /* Mobile grid force single column */
+  .grid-cols-2, .md\\:grid-cols-2, .lg\\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
   }
   
-  .gap-8 {
+  .grid-cols-3, .md\\:grid-cols-3, .lg\\:grid-cols-3 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .grid-cols-4, .md\\:grid-cols-4, .lg\\:grid-cols-4 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Mobile gap adjustments */
+  .gap-8, .gap-12 {
+    gap: 1.5rem !important;
+  }
+  
+  .gap-6 {
     gap: 1rem !important;
   }
   
-  .gap-12 {
-    gap: 2rem !important;
-  }
-  
-  /* Mobile button sizing */
-  .px-8 {
+  /* Mobile button sizing - touch friendly */
+  .px-6, .lg\\:px-8 {
     padding-left: 1.5rem !important;
     padding-right: 1.5rem !important;
   }
   
-  .py-4 {
-    padding-top: 0.75rem !important;
-    padding-bottom: 0.75rem !important;
+  .py-3, .lg\\:py-4 {
+    padding-top: 0.875rem !important;
+    padding-bottom: 0.875rem !important;
+    min-height: 44px !important;
   }
   
   /* Mobile margin adjustments */
@@ -694,16 +761,111 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1rem !important;
   }
   
-  .mt-12 {
+  .mt-12, .mt-16, .mt-20 {
     margin-top: 2rem !important;
   }
   
-  .mt-16 {
-    margin-top: 3rem !important;
+  /* Mobile flex adjustments */
+  .sm\\:flex-row {
+    flex-direction: column !important;
+    gap: 1rem !important;
   }
   
-  .mt-20 {
-    margin-top: 4rem !important;
+  .flex-col {
+    align-items: stretch !important;
+  }
+  
+  /* Mobile padding adjustments */
+  .p-8, .p-12 {
+    padding: 1.5rem !important;
+  }
+  
+  .p-6 {
+    padding: 1rem !important;
+  }
+  
+  /* Mobile rounded corners */
+  .rounded-2xl, .rounded-3xl {
+    border-radius: 1rem !important;
+  }
+  
+  /* Mobile text alignment */
+  .text-center {
+    text-align: center !important;
+  }
+  
+  /* Force mobile layout stacking */
+  .lg\\:text-left {
+    text-align: center !important;
+  }
+  
+  /* Mobile hero content spacing */
+  .hero-content {
+    padding: 1rem !important;
+    text-align: center !important;
+  }
+  
+  /* Mobile animation container */
+  .spline-container {
+    order: 1 !important;
+    margin-bottom: 2rem !important;
+  }
+  
+  .hero-text-content {
+    order: 2 !important;
+  }
+  
+  /* Mobile button container */
+  .hero-buttons {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    width: 100% !important;
+  }
+  
+  .hero-buttons > * {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  
+  /* Mobile features grid */
+  .features-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  
+  /* Mobile stats grid */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+  
+  /* Mobile testimonials */
+  .testimonial-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Mobile navigation spacing */
+  .mobile-nav-item {
+    padding: 1rem !important;
+    border-bottom: 1px solid #f3f4f6 !important;
+  }
+  
+  /* Mobile form inputs */
+  input, textarea, select {
+    min-height: 44px !important;
+    padding: 0.75rem !important;
+    font-size: 1rem !important;
+  }
+  
+  /* Mobile cards */
+  .card-mobile {
+    margin-bottom: 1rem !important;
+    padding: 1rem !important;
+  }
+  
+  /* Mobile safe area */
+  .safe-area-inset {
+    padding-bottom: env(safe-area-inset-bottom) !important;
   }
 }
 
