@@ -1164,31 +1164,59 @@ h1, h2, h3, h4, h5, h6 {
     color: #333 !important;
   }
   
-  /* FIX 15-18: Mobile hero content order */
+  /* FIX 15-18: Mobile hero content order - TEXT FIRST, ROBOT BELOW */
   /* Force flexbox column layout for hero section */
   .flex.flex-col.lg\\:grid.lg\\:grid-cols-2 {
     display: flex !important;
     flex-direction: column !important;
   }
   
-  /* Mobile hero content stacking order */
+  /* Mobile hero content stacking order - TEXT CONTENT FIRST */
   .hero-text-content {
     order: 1 !important;
     margin-bottom: 2rem !important;
   }
   
+  /* ROBOT ANIMATION BELOW TEXT */
   .spline-container {
     order: 2 !important;
     margin-top: 0 !important;
   }
   
-  /* Override any existing order classes on mobile */
+  /* Override existing order classes - FORCE TEXT FIRST ON MOBILE */
   .order-1.lg\\:order-2 {
-    order: 2 !important;
+    order: 2 !important; /* This is the robot - should be second */
   }
   
   .order-2.lg\\:order-1 {
+    order: 1 !important; /* This is the text - should be first */
+  }
+  
+  /* Specific targeting for hero section elements */
+  .order-2.lg\\:order-1.hero-text-content {
+    order: 1 !important; /* Text content first */
+  }
+  
+  .order-1.lg\\:order-2.spline-container {
+    order: 2 !important; /* Robot animation last */
+  }
+  
+  /* More specific targeting with all classes */
+  div.order-2.lg\\:order-1.space-y-6.lg\\:space-y-8.relative.z-20.w-full.text-center.lg\\:text-left.hero-text-content {
+    order: 1 !important; /* Text content absolutely first */
+  }
+  
+  div.order-1.lg\\:order-2.relative.animate-fade-in-right.delay-400.z-10.spline-container {
+    order: 2 !important; /* Robot animation absolutely last */
+  }
+  
+  /* Force correct order regardless of current classes */
+  [class*="hero-text-content"] {
     order: 1 !important;
+  }
+  
+  [class*="spline-container"] {
+    order: 2 !important;
   }
   
   /* Mobile tagline positioning */
