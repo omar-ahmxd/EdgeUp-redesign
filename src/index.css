@@ -1214,28 +1214,59 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 1.5rem !important;
   }
   
-  /* Override existing order classes for new structure */
+  /* RESTRUCTURE ENTIRE HERO SECTION FOR MOBILE */
+  
+  /* Main hero container - create proper order */
+  .flex.flex-col.lg\\:grid.lg\\:grid-cols-2 {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  
+  /* Hero text content - split into parts */
+  .hero-text-content {
+    order: 1 !important;
+    display: contents !important; /* This breaks the container so children can be reordered */
+  }
+  
+  /* Individual element ordering */
+  .hero-text-content .inline-flex.items-center.px-3.py-2 {
+    order: 1 !important; /* Tagline first */
+  }
+  
+  .hero-text-content h1 {
+    order: 2 !important; /* Headline second */
+  }
+  
+  /* Robot animation in the middle */
+  .spline-container {
+    order: 3 !important; /* Robot third - between headline and description */
+    margin: 1.5rem 0 !important;
+    height: 280px !important;
+    width: 100% !important;
+  }
+  
+  .hero-text-content p {
+    order: 4 !important; /* Description fourth */
+  }
+  
+  .hero-buttons {
+    order: 5 !important; /* Buttons last */
+  }
+  
+  /* Force override of existing order classes */
   .order-1.lg\\:order-2 {
-    order: 3 !important; /* Robot in middle */
+    order: 3 !important; /* Robot */
   }
   
   .order-2.lg\\:order-1 {
-    display: flex !important;
-    flex-direction: column !important;
+    order: 1 !important; /* Text content */
+    display: contents !important;
   }
   
-  /* Make hero text content a flex container on mobile */
-  .hero-text-content {
-    display: flex !important;
-    flex-direction: column !important;
-  }
-  
-  /* Restructure space-y container */
+  /* Remove any space-y gaps that might interfere */
   .hero-text-content .space-y-6,
   .hero-text-content .space-y-8 {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 0 !important;
+    display: contents !important;
   }
   
   /* Mobile tagline positioning */
