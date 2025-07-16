@@ -1143,7 +1143,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   /* FIX 10-14: Add white background to mobile menu */
-  .fixed.inset-0.bg-black\\/20 {
+  .fixed.inset-0[class*="bg-black"] {
     background: rgba(255, 255, 255, 0.95) !important;
     backdrop-filter: none !important;
   }
@@ -1271,7 +1271,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   /* Mobile menu overlay backdrop with HIGH blur effect */
-  .fixed.inset-0.bg-black\\/20,
+  .fixed.inset-0[class*="bg-black"],
   .fixed.inset-0.z-40 {
     z-index: 9998 !important;
     background: rgba(255, 255, 255, 0.85) !important;
