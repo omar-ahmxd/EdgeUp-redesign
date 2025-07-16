@@ -1270,21 +1270,21 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 9999 !important;
   }
   
-  /* Mobile menu overlay backdrop with blur effect */
+  /* Mobile menu overlay backdrop with HIGH blur effect */
   .fixed.inset-0.bg-black\\/20,
   .fixed.inset-0.z-40 {
     z-index: 9998 !important;
-    background: rgba(255, 255, 255, 0.1) !important;
-    backdrop-filter: blur(15px) !important;
-    -webkit-backdrop-filter: blur(15px) !important;
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(25px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
     transition: backdrop-filter 0.3s ease !important;
   }
   
   /* Mobile menu solid white background - NO BLUR ON MENU ITSELF */
   .lg\\:hidden.fixed.inset-0 {
-    background: white !important;
+    background: rgba(255, 255, 255, 0.98) !important;
     z-index: 9999 !important;
-    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15) !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
   }
@@ -1306,13 +1306,13 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.3s ease !important;
   }
   
-  /* Blur entire page content when menu is open */
+  /* Blur entire page content when menu is open - HIGH BLUR */
   body.menu-open main,
   body.menu-open .particles-container,
   body.menu-open .absolute.bg-gradient-to-r,
   body.menu-open .bg-gradient-to-br {
-    filter: blur(15px) !important;
-    -webkit-filter: blur(15px) !important;
+    filter: blur(25px) saturate(120%) !important;
+    -webkit-filter: blur(25px) saturate(120%) !important;
     transition: filter 0.3s ease !important;
   }
   
@@ -1327,10 +1327,12 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 9997 !important;
   }
   
-  /* Mobile menu content styling */
+  /* Mobile menu content styling with solid background */
   .lg\\:hidden nav {
-    background: white !important;
+    background: rgba(255, 255, 255, 0.98) !important;
     height: 100% !important;
+    backdrop-filter: blur(30px) saturate(200%) !important;
+    -webkit-backdrop-filter: blur(30px) saturate(200%) !important;
   }
   
   /* Menu items styling */
@@ -1379,9 +1381,12 @@ h1, h2, h3, h4, h5, h6 {
     color: #333 !important;
   }
   
-  /* Menu shadow and separation */
+  /* Menu shadow and separation with extra blur background */
   .lg\\:hidden > div {
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.15) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(30px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(30px) saturate(180%) !important;
   }
   
   /* Ensure menu covers full screen */
