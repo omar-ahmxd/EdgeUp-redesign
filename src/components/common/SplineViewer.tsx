@@ -185,7 +185,6 @@ const SplineViewer: React.FC<SplineViewerProps> = ({
             Retry attempt {retryCount} of {maxRetries}
           </p>
         )}
-        <p className="text-xs text-gray-500 mt-2">If stuck, scene will auto-display in 5s</p>
       </div>
     </div>
   );
@@ -251,12 +250,6 @@ const SplineViewer: React.FC<SplineViewerProps> = ({
       {loadingState === 'loading' && renderLoadingState()}
       {loadingState === 'error' && renderErrorState()}
       
-      {/* Interaction Prompt */}
-      {loadingState === 'loaded' && interactionPrompt && showInteractionPrompt && (
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-black/75 text-white px-4 py-2 rounded-lg text-sm animate-pulse">
-          <p>Click and drag to rotate • Scroll to zoom</p>
-        </div>
-      )}
       
       {/* Camera Controls */}
       {loadingState === 'loaded' && cameraControls && splineApp && (

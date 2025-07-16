@@ -184,6 +184,7 @@ const HomePage: React.FC = () => {
                   sceneUrl="https://prod.spline.design/rMylZE0LtWz1dT3B/scene.splinecode"
                   className="w-full h-full"
                   height="100%"
+                  interactionPrompt={false}
                   onSceneReady={(app) => {
                     console.log('Spline scene ready in HomePage');
                   }}
