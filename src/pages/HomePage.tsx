@@ -19,14 +19,11 @@ import {
 import { useCMS } from '../context/CMSContext';
 import AnimatedCounter from '../components/common/AnimatedCounter';
 import IntersectionObserver from '../components/common/IntersectionObserver';
-
-const Spline = lazy(() => import('@splinetool/react-spline'));
+import SplineViewer from '../components/common/SplineViewer';
 
 const HomePage: React.FC = () => {
   const { getContentBlocks } = useCMS();
   const homePageBlocks = getContentBlocks('home');
-  const [splineLoaded, setSplineLoaded] = useState(false);
-  const [splineError, setSplineError] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -183,43 +180,14 @@ const HomePage: React.FC = () => {
 
               {/* Right side - Spline Animation */}
               <div className="relative animate-fade-in-right delay-400 z-10 h-[400px] lg:h-[600px] w-full order-first lg:order-last" style={{ background: 'transparent' }}>
-                <Suspense fallback={
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-400 mx-auto mb-4"></div>
-                      <p className="text-purple-400">Loading 3D Bot...</p>
-                    </div>
-                  </div>
-                }>
-                  <Spline 
-                    scene="https://prod.spline.design/rMylZE0LtWz1dT3B/scene.splinecode"
-                    className="w-full h-full"
-                    style={{
-                      background: 'transparent',
-                      backgroundColor: 'transparent',
-                    }}
-                    onLoad={() => {
-                      console.log('Spline scene loaded successfully');
-                      setSplineLoaded(true);
-                    }}
-                    onError={(error) => {
-                      console.error('Spline loading error:', error);
-                      setSplineError(true);
-                    }}
-                  />
-                </Suspense>
-                {splineError && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-full h-full bg-gradient-to-br from-purple-100 to-purple-50 rounded-2xl flex items-center justify-center">
-                        <div>
-                          <Brain className="w-24 h-24 text-purple-400 mx-auto mb-4" />
-                          <p className="text-purple-600 font-medium">AI-Powered Learning</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
+                <SplineViewer
+                  sceneUrl="https://prod.spline.design/rMylZE0LtWz1dT3B/scene.splinecode"
+                  className="w-full h-full"
+                  height="100%"
+                  onSceneReady={(app) => {
+                    console.log('Spline scene ready in HomePage');
+                  }}
+                />
               </div>
             </div>
           </div>

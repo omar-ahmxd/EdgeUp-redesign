@@ -16,6 +16,7 @@ import CaseStudiesPage from './pages/CaseStudiesPage';
 import MediaKitPage from './pages/MediaKitPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import ContactPage from './pages/ContactPage';
+import SplineDebug from './pages/SplineDebug';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminPages from './pages/admin/AdminPages';
@@ -171,6 +172,13 @@ function App() {
                 <>
                   <Header />
                   <ContactPage />
+                  <Footer />
+                </>
+              } />
+              <Route path="/spline-debug" element={
+                <>
+                  <Header />
+                  <SplineDebug />
                   <Footer />
                 </>
               } />

@@ -1,35 +1,27 @@
-import React, { useEffect, useRef } from 'react';
-import { Application } from '@splinetool/runtime';
+import React from 'react';
+import SplineViewer from './SplineViewer';
 
-const SplineAnimation: React.FC = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+interface SplineAnimationProps {
+  sceneUrl?: string;
+  className?: string;
+  height?: string;
+}
 
-  useEffect(() => {
-    if (canvasRef.current) {
-      const app = new Application(canvasRef.current);
-      app.load('https://prod.spline.design/D7RnQq8HaP1fQXcb/scene.splinecode')
-        .catch(error => {
-          console.error('Failed to load Spline scene:', error);
-        });
-
-      // Cleanup function
-      return () => {
-        if (app) {
-          app.dispose?.();
-        }
-      };
-    }
-  }, []);
-
+const SplineAnimation: React.FC<SplineAnimationProps> = ({
+  sceneUrl = 'https://prod.spline.design/rMylZE0LtWz1dT3B/scene.splinecode',
+  className = '',
+  height = '100%'
+}) => {
   return (
-    <div className="relative w-full h-full">
-      <canvas
-        ref={canvasRef}
-        id="canvas3d"
-        className="w-full h-full"
-        style={{ background: 'transparent' }}
-      />
-    </div>
+    <SplineViewer
+      sceneUrl={sceneUrl}
+      className={className}
+      height={height}
+      debugMode={false}
+      cameraControls={true}
+      autoRotate={false}
+      interactionPrompt={false}
+    />
   );
 };
 
