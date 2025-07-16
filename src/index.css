@@ -1164,59 +1164,76 @@ h1, h2, h3, h4, h5, h6 {
     color: #333 !important;
   }
   
-  /* FIX 15-18: Mobile hero content order - TEXT FIRST, ROBOT BELOW */
+  /* MOBILE HERO CONTENT ORDER - NEW STRUCTURE */
   /* Force flexbox column layout for hero section */
   .flex.flex-col.lg\\:grid.lg\\:grid-cols-2 {
     display: flex !important;
     flex-direction: column !important;
   }
   
-  /* Mobile hero content stacking order - TEXT CONTENT FIRST */
-  .hero-text-content {
+  /* Mobile hero content order: 
+     1. Tagline (moved up higher)
+     2. Main headline 
+     3. Robot animation (between headline and description)
+     4. Description text
+     5. Buttons
+  */
+  
+  /* Tagline positioning - move higher up */
+  .hero-text-content .inline-flex.items-center.px-3.py-2 {
     order: 1 !important;
-    margin-bottom: 2rem !important;
-  }
-  
-  /* ROBOT ANIMATION BELOW TEXT */
-  .spline-container {
-    order: 2 !important;
     margin-top: 0 !important;
+    margin-bottom: 1.5rem !important;
   }
   
-  /* Override existing order classes - FORCE TEXT FIRST ON MOBILE */
+  /* Main headline */
+  .hero-text-content h1 {
+    order: 2 !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Robot animation - place after headline */
+  .spline-container {
+    order: 3 !important;
+    margin: 1rem 0 !important;
+    height: 250px !important;
+  }
+  
+  /* Description text - after robot */
+  .hero-text-content p {
+    order: 4 !important;
+    margin-top: 1rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Buttons - last */
+  .hero-buttons {
+    order: 5 !important;
+    margin-top: 1rem !important;
+  }
+  
+  /* Override existing order classes for new structure */
   .order-1.lg\\:order-2 {
-    order: 2 !important; /* This is the robot - should be second */
+    order: 3 !important; /* Robot in middle */
   }
   
   .order-2.lg\\:order-1 {
-    order: 1 !important; /* This is the text - should be first */
+    display: flex !important;
+    flex-direction: column !important;
   }
   
-  /* Specific targeting for hero section elements */
-  .order-2.lg\\:order-1.hero-text-content {
-    order: 1 !important; /* Text content first */
+  /* Make hero text content a flex container on mobile */
+  .hero-text-content {
+    display: flex !important;
+    flex-direction: column !important;
   }
   
-  .order-1.lg\\:order-2.spline-container {
-    order: 2 !important; /* Robot animation last */
-  }
-  
-  /* More specific targeting with all classes */
-  div.order-2.lg\\:order-1.space-y-6.lg\\:space-y-8.relative.z-20.w-full.text-center.lg\\:text-left.hero-text-content {
-    order: 1 !important; /* Text content absolutely first */
-  }
-  
-  div.order-1.lg\\:order-2.relative.animate-fade-in-right.delay-400.z-10.spline-container {
-    order: 2 !important; /* Robot animation absolutely last */
-  }
-  
-  /* Force correct order regardless of current classes */
-  [class*="hero-text-content"] {
-    order: 1 !important;
-  }
-  
-  [class*="spline-container"] {
-    order: 2 !important;
+  /* Restructure space-y container */
+  .hero-text-content .space-y-6,
+  .hero-text-content .space-y-8 {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
   }
   
   /* Mobile tagline positioning */
