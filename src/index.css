@@ -1106,7 +1106,7 @@ h1, h2, h3, h4, h5, h6 {
   /* Fix mobile viewport height issues */
   .min-h-screen {
     min-height: 100vh !important;
-    padding-top: 4rem !important;
+    padding-top: 3rem !important;
     padding-bottom: 1rem !important;
   }
   
@@ -1172,44 +1172,46 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   /* Mobile hero content order: 
-     1. Tagline (moved up higher)
-     2. Main headline 
-     3. Robot animation (between headline and description)
-     4. Description text
+     1. Tagline (much higher up - top of screen)
+     2. Main headline ("AI-Powered Learning Platform...")
+     3. Robot animation (between headline and "EdgeUp functions")
+     4. Description text ("EdgeUp functions...")
      5. Buttons
   */
   
-  /* Tagline positioning - move higher up */
+  /* Tagline positioning - move MUCH higher up */
   .hero-text-content .inline-flex.items-center.px-3.py-2 {
     order: 1 !important;
-    margin-top: 0 !important;
-    margin-bottom: 1.5rem !important;
+    margin-top: -2rem !important;
+    margin-bottom: 2rem !important;
+    position: relative !important;
+    z-index: 100 !important;
   }
   
-  /* Main headline */
+  /* Main headline - "AI-Powered Learning Platform..." */
   .hero-text-content h1 {
     order: 2 !important;
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 2rem !important;
   }
   
-  /* Robot animation - place after headline */
+  /* Robot animation - between headline and "EdgeUp functions" */
   .spline-container {
     order: 3 !important;
-    margin: 1rem 0 !important;
-    height: 250px !important;
+    margin: 1.5rem 0 !important;
+    height: 280px !important;
   }
   
-  /* Description text - after robot */
+  /* Description text - "EdgeUp functions..." - after robot */
   .hero-text-content p {
     order: 4 !important;
-    margin-top: 1rem !important;
-    margin-bottom: 1.5rem !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 2rem !important;
   }
   
   /* Buttons - last */
   .hero-buttons {
     order: 5 !important;
-    margin-top: 1rem !important;
+    margin-top: 1.5rem !important;
   }
   
   /* Override existing order classes for new structure */
