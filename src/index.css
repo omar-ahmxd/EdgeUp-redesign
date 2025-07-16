@@ -1270,19 +1270,23 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 9999 !important;
   }
   
-  /* Mobile menu overlay backdrop */
+  /* Mobile menu overlay backdrop with blur effect */
   .fixed.inset-0.bg-black\\/20,
   .fixed.inset-0.z-40 {
     z-index: 9998 !important;
-    background: rgba(0, 0, 0, 0.5) !important;
-    backdrop-filter: blur(8px) !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    transition: backdrop-filter 0.3s ease !important;
   }
   
-  /* Mobile menu solid white background */
+  /* Mobile menu solid white background - NO BLUR ON MENU ITSELF */
   .lg\\:hidden.fixed.inset-0 {
     background: white !important;
     z-index: 9999 !important;
     box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
   
   /* Lower robot animation z-index on mobile */
@@ -1294,12 +1298,28 @@ h1, h2, h3, h4, h5, h6 {
     position: relative !important;
   }
   
-  /* Hide robot when menu is open */
+  /* Blur background content when menu is open */
   body.menu-open .spline-container,
   body.menu-open spline-viewer {
     opacity: 0.3 !important;
-    filter: blur(4px) !important;
+    filter: blur(15px) !important;
     transition: all 0.3s ease !important;
+  }
+  
+  /* Blur entire page content when menu is open */
+  body.menu-open main,
+  body.menu-open .particles-container,
+  body.menu-open .absolute.bg-gradient-to-r,
+  body.menu-open .bg-gradient-to-br {
+    filter: blur(15px) !important;
+    -webkit-filter: blur(15px) !important;
+    transition: filter 0.3s ease !important;
+  }
+  
+  /* Ensure header stays sharp */
+  body.menu-open header {
+    filter: none !important;
+    -webkit-filter: none !important;
   }
   
   /* Ensure header stays on top */
@@ -1331,9 +1351,19 @@ h1, h2, h3, h4, h5, h6 {
     position: relative !important;
   }
   
-  /* Menu transitions */
+  /* Menu transitions with blur effect */
   .lg\\:hidden.fixed.inset-0 {
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  
+  /* Smooth blur transitions for background content */
+  main,
+  .particles-container,
+  .absolute.bg-gradient-to-r,
+  .bg-gradient-to-br,
+  .spline-container,
+  spline-viewer {
+    transition: filter 0.3s ease !important;
   }
   
   /* Ensure all background elements stay behind menu */
