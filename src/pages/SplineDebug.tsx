@@ -75,8 +75,12 @@ const SplineDebug: React.FC = () => {
               robotParts: {}
             };
             
-            // Try to find specific objects
-            const objectNames = ['Robot', 'Eyes', 'Eye', 'Body', 'Head', 'Arm'];
+            // Try to find specific objects - expanded eye search
+            const objectNames = [
+              'Robot', 'Eyes', 'Eye', 'Body', 'Head', 'Arm',
+              'Eye_Left', 'Eye_Right', 'LeftEye', 'RightEye',
+              'eye', 'eyes', 'Pupils', 'Pupil', 'Iris'
+            ];
             
             const app = splineApp as any;
             const foundObjects: string[] = [];
@@ -104,6 +108,25 @@ const SplineDebug: React.FC = () => {
               const allObjects = app.getAllObjects();
               objectInfo.totalObjects = allObjects.length;
               objectInfo.allObjectNames = allObjects.map((obj: { name: string }) => obj.name);
+              
+              // Deep search for eye-related objects
+              const eyeRelatedObjects = allObjects.filter((obj: any) => {
+                const nameLower = obj.name?.toLowerCase() || '';
+                return nameLower.includes('eye') || 
+                       nameLower.includes('pupil') || 
+                       nameLower.includes('iris') ||
+                       nameLower.includes('ocular');
+              });
+              
+              if (eyeRelatedObjects.length > 0) {
+                objectInfo.eyeSpecificObjects = eyeRelatedObjects.map((obj: any) => ({
+                  name: obj.name,
+                  visible: obj.visible,
+                  position: obj.position,
+                  scale: obj.scale,
+                  parent: obj.parent?.name
+                }));
+              }
             }
             
             setSceneInfo(objectInfo);

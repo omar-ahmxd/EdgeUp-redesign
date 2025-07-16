@@ -20,7 +20,11 @@
       "Bash(ls:*)",
       "Bash(ssh-keygen:*)",
       "Bash(cat:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "WebFetch(domain:prod.spline.design)",
+      "Bash(npm run dev:*)",
+      "Bash(npm run lint)",
+      "Bash(gh repo view:*)"
     ],
     "deny": []
   }
