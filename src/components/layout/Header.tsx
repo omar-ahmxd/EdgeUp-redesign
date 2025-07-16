@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+// Mobile menu removed - imports no longer needed
 import { useCMS } from '../../context/CMSContext';
 import Logo from '../common/Logo';
 
 const Header: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  // Mobile menu removed - state no longer needed
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const { siteSettings } = useCMS();
@@ -19,7 +19,7 @@ const Header: React.FC = () => {
     { title: 'Book a Demo', path: '/book-demo', isButton: true }
   ];
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  // Mobile menu removed - toggle function no longer needed
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,22 +34,7 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Add/remove menu-open class to body
-  useEffect(() => {
-    if (isOpen) {
-      document.body.classList.add('menu-open');
-    } else {
-      document.body.classList.remove('menu-open');
-    }
-
-    return () => {
-      document.body.classList.remove('menu-open');
-    };
-  }, [isOpen]);
-
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location]);
+  // Mobile menu removed - body class effects no longer needed
 
   return (
     <header 
@@ -94,74 +79,11 @@ const Header: React.FC = () => {
             ))}
           </nav>
 
-          <button
-            className="lg:hidden text-gray-900 focus:outline-none transition-transform duration-300 hover:scale-110"
-            onClick={toggleMenu}
-            aria-label="Toggle menu"
-          >
-            <div className="relative w-6 h-6">
-              <span className={`absolute inset-0 transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-0' : ''}`}>
-                {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </span>
-            </div>
-          </button>
+          {/* Mobile menu button removed */}
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <div className={`lg:hidden fixed inset-0 z-50 bg-white transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-        <div className="flex flex-col h-full">
-          <div className="flex justify-between items-center p-6 border-b border-gray-100">
-            <Logo />
-            <button
-              onClick={toggleMenu}
-              className="text-gray-900 transition-transform duration-300 hover:scale-110"
-            >
-              <X className="h-6 w-6" />
-            </button>
-          </div>
-          
-          <nav className="flex-1 px-6 py-8">
-            <div className="space-y-4">
-              {navItems.map((item, index) => (
-                item.isButton ? (
-                  <Link
-                    key={index}
-                    to={item.path}
-                    className="inline-flex items-center justify-center px-6 py-4 bg-[#10ac8b] text-white font-semibold rounded-lg hover:bg-[#0d9488] transition-all duration-300 w-full text-center text-lg min-h-[50px] animate-fade-in-left"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                    onClick={toggleMenu}
-                  >
-                    {item.title}
-                  </Link>
-                ) : (
-                  <Link
-                    key={index}
-                    to={item.path}
-                    className={`block py-4 text-lg font-medium transition-colors duration-300 min-h-[50px] flex items-center animate-fade-in-left ${
-                      location.pathname === item.path 
-                        ? 'text-[#094d88]' 
-                        : 'text-gray-700 hover:text-[#094d88]'
-                    }`}
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                    onClick={toggleMenu}
-                  >
-                    {item.title}
-                  </Link>
-                )
-              ))}
-            </div>
-          </nav>
-        </div>
-      </div>
-
-      {/* Mobile menu overlay */}
-      {isOpen && (
-        <div 
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 lg:hidden"
-          onClick={toggleMenu}
-        />
-      )}
+      {/* Mobile Menu removed */}
     </header>
   );
 };
