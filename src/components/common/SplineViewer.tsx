@@ -13,6 +13,7 @@ interface SplineViewerProps {
   cameraControls?: boolean;
   autoRotate?: boolean;
   interactionPrompt?: boolean;
+  loadingTimeout?: number;
 }
 
 const SplineViewer: React.FC<SplineViewerProps> = ({
@@ -24,7 +25,8 @@ const SplineViewer: React.FC<SplineViewerProps> = ({
   debugMode = false,
   cameraControls = true,
   autoRotate = false,
-  interactionPrompt = true
+  interactionPrompt = true,
+  loadingTimeout = 30000 // 30 seconds for slower connections
 }) => {
   const [loadingState, setLoadingState] = useState<'loading' | 'loaded' | 'error'>('loading');
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -36,7 +38,17 @@ const SplineViewer: React.FC<SplineViewerProps> = ({
   useEffect(() => {
     setLoadingState('loading');
     setErrorMessage('');
-  }, [sceneUrl]);
+    
+    // Set loading timeout
+    const timeoutId = setTimeout(() => {
+      if (loadingState === 'loading') {
+        console.error(`Spline loading timeout after ${loadingTimeout}ms`);
+        handleError(new Error(`Loading timeout: Scene took too long to load (${loadingTimeout}ms)`));
+      }
+    }, loadingTimeout);
+    
+    return () => clearTimeout(timeoutId);
+  }, [sceneUrl, loadingTimeout, loadingState]);
 
   const handleLoad = (app: unknown) => {
     setSplineApp(app);
@@ -87,8 +99,31 @@ const SplineViewer: React.FC<SplineViewerProps> = ({
 
   const handleError = (error: unknown) => {
     console.error('Spline loading error:', error);
-    const errorMsg = error instanceof Error ? error.message : String(error) || 'Failed to load 3D scene';
+    
+    // Enhanced error analysis for deployment issues
+    let errorMsg = error instanceof Error ? error.message : String(error) || 'Failed to load 3D scene';
+    
+    // Check for common deployment issues
+    if (errorMsg.includes('Failed to fetch') || errorMsg.includes('NetworkError')) {
+      errorMsg = 'Network error: Check if Spline URL is accessible and CORS is configured';
+    } else if (errorMsg.includes('timeout')) {
+      errorMsg = 'Loading timeout: The 3D scene is taking too long to load. This might be due to slow connection or large file size';
+    } else if (window.location.protocol === 'http:' && window.location.hostname !== 'localhost') {
+      errorMsg = 'HTTPS required: Spline scenes require HTTPS on live sites';
+    }
+    
     setErrorMessage(errorMsg);
+    
+    // Log additional debugging info
+    if (debugMode) {
+      console.log('Debug info:', {
+        url: sceneUrl,
+        protocol: window.location.protocol,
+        hostname: window.location.hostname,
+        retryCount,
+        error: error
+      });
+    }
     
     if (retryCount < maxRetries) {
       setTimeout(() => {
@@ -152,13 +187,18 @@ const SplineViewer: React.FC<SplineViewerProps> = ({
     </div>
   );
 
+  // Ensure HTTPS for production
+  const secureUrl = sceneUrl.startsWith('http://') && window.location.protocol === 'https:' 
+    ? sceneUrl.replace('http://', 'https://') 
+    : sceneUrl;
+
   return (
     <div className={`relative ${className}`} style={{ height }}>
       <Suspense fallback={renderLoadingState()}>
         {loadingState !== 'error' && (
           <Spline
-            key={`${sceneUrl}-${retryCount}`}
-            scene={sceneUrl}
+            key={`${secureUrl}-${retryCount}`}
+            scene={secureUrl}
             onLoad={handleLoad}
             onError={handleError}
             style={{
@@ -166,6 +206,11 @@ const SplineViewer: React.FC<SplineViewerProps> = ({
               height: '100%',
               background: 'transparent',
             }}
+            // Add iframe permissions for better compatibility
+            {...(window.location.hostname !== 'localhost' && {
+              sandbox: 'allow-same-origin allow-scripts allow-popups allow-forms',
+              allow: 'autoplay; fullscreen; xr-spatial-tracking'
+            })}
           />
         )}
       </Suspense>

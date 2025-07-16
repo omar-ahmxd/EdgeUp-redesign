@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SplineViewer from '../components/common/SplineViewer';
+import SplineUrlVerifier from '../components/common/SplineUrlVerifier';
 
 const SplineDebug: React.FC = () => {
   const [sceneInfo, setSceneInfo] = useState<Record<string, unknown> | null>(null);
@@ -11,6 +12,11 @@ const SplineDebug: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-100 p-8">
       <h1 className="text-3xl font-bold mb-4">Spline Robot Debug</h1>
+      
+      {/* URL Verification */}
+      <div className="mb-6">
+        <SplineUrlVerifier url={splineUrl} />
+      </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         <div className="bg-white rounded-lg shadow-lg p-6">
