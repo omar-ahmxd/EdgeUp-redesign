@@ -1,7 +1,16 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { Brain, Loader2, AlertCircle } from 'lucide-react';
 
-const Spline = lazy(() => import('@splinetool/react-spline'));
+// Force dynamic import with error handling
+const Spline = lazy(() => 
+  import('@splinetool/react-spline').then(module => {
+    console.log('Spline module loaded successfully');
+    return module;
+  }).catch(error => {
+    console.error('Failed to load Spline module:', error);
+    throw error;
+  })
+);
 
 interface SplineViewerProps {
   sceneUrl: string;
@@ -38,19 +47,33 @@ const SplineViewer: React.FC<SplineViewerProps> = ({
   useEffect(() => {
     setLoadingState('loading');
     setErrorMessage('');
-    
-    // Set loading timeout
-    const timeoutId = setTimeout(() => {
+  }, [sceneUrl]);
+
+  useEffect(() => {
+    // Auto-hide loading screen after 5 seconds as fallback
+    const autoHideTimeout = setTimeout(() => {
+      if (loadingState === 'loading') {
+        console.log('Auto-hiding loading screen after 5 seconds');
+        setLoadingState('loaded');
+      }
+    }, 5000);
+
+    // Set loading timeout for error state
+    const errorTimeout = setTimeout(() => {
       if (loadingState === 'loading') {
         console.error(`Spline loading timeout after ${loadingTimeout}ms`);
         handleError(new Error(`Loading timeout: Scene took too long to load (${loadingTimeout}ms)`));
       }
     }, loadingTimeout);
     
-    return () => clearTimeout(timeoutId);
-  }, [sceneUrl, loadingTimeout, loadingState]);
+    return () => {
+      clearTimeout(autoHideTimeout);
+      clearTimeout(errorTimeout);
+    };
+  }, [loadingState, loadingTimeout]);
 
   const handleLoad = (app: unknown) => {
+    console.log('Spline onLoad callback triggered');
     setSplineApp(app);
     
     if (debugMode) {
@@ -82,6 +105,8 @@ const SplineViewer: React.FC<SplineViewerProps> = ({
       }
     }
     
+    // Force loading state to loaded
+    console.log('Setting loading state to loaded');
     setLoadingState('loaded');
     setRetryCount(0);
     
@@ -151,8 +176,8 @@ const SplineViewer: React.FC<SplineViewerProps> = ({
   };
 
   const renderLoadingState = () => (
-    <div className="absolute inset-0 flex items-center justify-center bg-gray-50/50 backdrop-blur-sm">
-      <div className="text-center">
+    <div className="absolute inset-0 flex items-center justify-center bg-white/30 backdrop-blur-sm pointer-events-none z-10">
+      <div className="text-center bg-white/80 p-4 rounded-lg shadow-lg">
         <Loader2 className="w-12 h-12 text-purple-400 animate-spin mx-auto mb-4" />
         <p className="text-purple-600 font-medium">Loading 3D Scene...</p>
         {retryCount > 0 && (
@@ -160,6 +185,7 @@ const SplineViewer: React.FC<SplineViewerProps> = ({
             Retry attempt {retryCount} of {maxRetries}
           </p>
         )}
+        <p className="text-xs text-gray-500 mt-2">If stuck, scene will auto-display in 5s</p>
       </div>
     </div>
   );
@@ -196,25 +222,32 @@ const SplineViewer: React.FC<SplineViewerProps> = ({
     <div className={`relative ${className}`} style={{ height }}>
       <Suspense fallback={renderLoadingState()}>
         {loadingState !== 'error' && (
-          <Spline
-            key={`${secureUrl}-${retryCount}`}
-            scene={secureUrl}
-            onLoad={handleLoad}
-            onError={handleError}
-            style={{
-              width: '100%',
-              height: '100%',
-              background: 'transparent',
-            }}
-            // Add iframe permissions for better compatibility
-            {...(window.location.hostname !== 'localhost' && {
-              sandbox: 'allow-same-origin allow-scripts allow-popups allow-forms',
-              allow: 'autoplay; fullscreen; xr-spatial-tracking'
-            })}
-          />
+          <div className="absolute inset-0 z-0">
+            <Spline
+              key={`${secureUrl}-${retryCount}`}
+              scene={secureUrl}
+              onLoad={handleLoad}
+              onError={handleError}
+              style={{
+                width: '100%',
+                height: '100%',
+                background: 'transparent',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                zIndex: 1,
+              }}
+              // Add iframe permissions for better compatibility
+              {...(window.location.hostname !== 'localhost' && {
+                sandbox: 'allow-same-origin allow-scripts allow-popups allow-forms',
+                allow: 'autoplay; fullscreen; xr-spatial-tracking'
+              })}
+            />
+          </div>
         )}
       </Suspense>
 
+      {/* Only show loading overlay if actually loading */}
       {loadingState === 'loading' && renderLoadingState()}
       {loadingState === 'error' && renderErrorState()}
       
