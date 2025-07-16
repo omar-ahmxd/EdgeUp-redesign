@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Mail, Phone, MapPin, CheckCircle, ArrowRight, ChevronDown, ChevronUp, Sparkles, Zap, Brain } from 'lucide-react';
 import { useCMS } from '../context/CMSContext';
 import IntersectionObserver from '../components/common/IntersectionObserver';
+import GoogleMapsEmbed from '../components/common/GoogleMapsEmbed';
 
 type EnquirerRole = 'individual' | 'institution' | 'partner';
 
@@ -208,16 +209,14 @@ const ContactPage: React.FC = () => {
                   {/* Enhanced Interactive Map */}
                   <div className="mt-10 bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/20 hover:shadow-2xl transition-all duration-500 group">
                     <div className="relative">
-                      <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.8290740215574!2d80.24673147573892!3d13.0603399902862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5267376515b75f%3A0x4afd61c7c0de4f78!2sEdgeUp!5e0!3m2!1sen!2sin!4v1710850058953!5m2!1sen!2sin"
+                      <GoogleMapsEmbed
                         width="100%"
                         height="300"
-                        style={{ border: 0 }}
-                        allowFullScreen
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
                         className="rounded-2xl group-hover:scale-105 transition-transform duration-500"
-                      ></iframe>
+                        location="EdgeUp, Chennai"
+                        zoom={15}
+                        showFallback={true}
+                      />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none"></div>
                     </div>
                   </div>
