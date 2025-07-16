@@ -1,65 +1,45 @@
 import React, { useEffect, useState } from 'react';
-import { AlertCircle, CheckCircle, Loader2 } from 'lucide-react';
+import { AlertCircle, CheckCircle } from 'lucide-react';
 
 interface SplineUrlVerifierProps {
   url: string;
 }
 
 const SplineUrlVerifier: React.FC<SplineUrlVerifierProps> = ({ url }) => {
-  const [status, setStatus] = useState<'checking' | 'valid' | 'invalid'>('checking');
+  const [status, setStatus] = useState<'valid' | 'invalid'>('valid');
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    const verifyUrl = async () => {
-      setStatus('checking');
-      
-      // Check URL format
-      if (!url.includes('spline.design')) {
-        setStatus('invalid');
-        setMessage('URL must be a Spline.design URL');
-        return;
-      }
+    // Quick URL format check without loading states
+    if (!url.includes('spline.design')) {
+      setStatus('invalid');
+      setMessage('URL must be a Spline.design URL');
+      return;
+    }
 
-      // Check if it's a public share URL
-      if (url.includes('/edit/') || url.includes('/file/')) {
-        setStatus('invalid');
-        setMessage('This appears to be an editor URL. Please use the public share URL from Spline');
-        return;
-      }
+    if (url.includes('/edit/') || url.includes('/file/')) {
+      setStatus('invalid');
+      setMessage('This appears to be an editor URL. Please use the public share URL from Spline');
+      return;
+    }
 
-      // Check HTTPS
-      if (url.startsWith('http://') && window.location.protocol === 'https:') {
-        setStatus('invalid');
-        setMessage('HTTPS required: Change http:// to https:// in your Spline URL');
-        return;
-      }
+    if (url.startsWith('http://') && window.location.protocol === 'https:') {
+      setStatus('invalid');
+      setMessage('HTTPS required: Change http:// to https:// in your Spline URL');
+      return;
+    }
 
-      // Try to fetch the URL to check accessibility
-      try {
-        const response = await fetch(url, { 
-          method: 'HEAD',
-          mode: 'no-cors' // We just want to check if it's reachable
-        });
-        
-        setStatus('valid');
-        setMessage('URL format appears correct');
-      } catch (error) {
-        setStatus('invalid');
-        setMessage('Unable to reach Spline URL. Ensure the project is published and public');
-      }
-    };
-
-    verifyUrl();
+    // If all checks pass, mark as valid
+    setStatus('valid');
+    setMessage('URL format appears correct');
   }, [url]);
 
   return (
     <div className={`p-4 rounded-lg border ${
-      status === 'checking' ? 'bg-blue-50 border-blue-200' :
       status === 'valid' ? 'bg-green-50 border-green-200' :
       'bg-red-50 border-red-200'
     }`}>
       <div className="flex items-center gap-3">
-        {status === 'checking' && <Loader2 className="w-5 h-5 animate-spin text-blue-500" />}
         {status === 'valid' && <CheckCircle className="w-5 h-5 text-green-500" />}
         {status === 'invalid' && <AlertCircle className="w-5 h-5 text-red-500" />}
         

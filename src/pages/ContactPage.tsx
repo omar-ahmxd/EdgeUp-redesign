@@ -371,8 +371,7 @@ const ContactPage: React.FC = () => {
                         <span className="relative z-10 flex items-center justify-center">
                           {isSubmitting ? (
                             <>
-                              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                              Sending...
+                              Send Message
                             </>
                           ) : (
                             <>

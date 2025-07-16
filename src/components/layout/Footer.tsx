@@ -146,8 +146,7 @@ const Footer: React.FC = () => {
                 >
                   {isSubscribing ? (
                     <span className="flex items-center">
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                      Subscribing...
+                      Subscribe
                     </span>
                   ) : (
                     <span className="flex items-center">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
-import { Brain, Loader2, AlertCircle } from 'lucide-react';
+import { Brain, AlertCircle } from 'lucide-react';
 
 // Force dynamic import with error handling
 const Spline = lazy(() => 
@@ -37,7 +37,7 @@ const SplineViewer: React.FC<SplineViewerProps> = ({
   interactionPrompt = true,
   loadingTimeout = 30000 // 30 seconds for slower connections
 }) => {
-  const [loadingState, setLoadingState] = useState<'loading' | 'loaded' | 'error'>('loading');
+  const [loadingState, setLoadingState] = useState<'loading' | 'loaded' | 'error'>('loaded');
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [retryCount, setRetryCount] = useState(0);
   const [showInteractionPrompt, setShowInteractionPrompt] = useState(true);
@@ -45,20 +45,12 @@ const SplineViewer: React.FC<SplineViewerProps> = ({
   const maxRetries = 3;
 
   useEffect(() => {
-    setLoadingState('loading');
+    setLoadingState('loaded');
     setErrorMessage('');
   }, [sceneUrl]);
 
   useEffect(() => {
-    // Auto-hide loading screen after 5 seconds as fallback
-    const autoHideTimeout = setTimeout(() => {
-      if (loadingState === 'loading') {
-        console.log('Auto-hiding loading screen after 5 seconds');
-        setLoadingState('loaded');
-      }
-    }, 5000);
-
-    // Set loading timeout for error state
+    // Set loading timeout for error state only
     const errorTimeout = setTimeout(() => {
       if (loadingState === 'loading') {
         console.error(`Spline loading timeout after ${loadingTimeout}ms`);
@@ -66,10 +58,7 @@ const SplineViewer: React.FC<SplineViewerProps> = ({
       }
     }, loadingTimeout);
     
-    return () => {
-      clearTimeout(autoHideTimeout);
-      clearTimeout(errorTimeout);
-    };
+    return () => clearTimeout(errorTimeout);
   }, [loadingState, loadingTimeout]);
 
   const handleLoad = (app: unknown) => {
@@ -153,7 +142,7 @@ const SplineViewer: React.FC<SplineViewerProps> = ({
     if (retryCount < maxRetries) {
       setTimeout(() => {
         setRetryCount(prev => prev + 1);
-        setLoadingState('loading');
+        setLoadingState('loaded');
       }, 2000);
     } else {
       setLoadingState('error');
@@ -175,19 +164,6 @@ const SplineViewer: React.FC<SplineViewerProps> = ({
     );
   };
 
-  const renderLoadingState = () => (
-    <div className="absolute inset-0 flex items-center justify-center bg-white/30 backdrop-blur-sm pointer-events-none z-10">
-      <div className="text-center bg-white/80 p-4 rounded-lg shadow-lg">
-        <Loader2 className="w-12 h-12 text-purple-400 animate-spin mx-auto mb-4" />
-        <p className="text-purple-600 font-medium">Loading 3D Scene...</p>
-        {retryCount > 0 && (
-          <p className="text-sm text-gray-600 mt-2">
-            Retry attempt {retryCount} of {maxRetries}
-          </p>
-        )}
-      </div>
-    </div>
-  );
 
   const renderErrorState = () => (
     <div className="absolute inset-0 flex items-center justify-center">
@@ -202,7 +178,7 @@ const SplineViewer: React.FC<SplineViewerProps> = ({
         <button
           onClick={() => {
             setRetryCount(0);
-            setLoadingState('loading');
+            setLoadingState('loaded');
           }}
           className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
         >
@@ -219,7 +195,7 @@ const SplineViewer: React.FC<SplineViewerProps> = ({
 
   return (
     <div className={`relative ${className}`} style={{ height }}>
-      <Suspense fallback={renderLoadingState()}>
+      <Suspense fallback={<div></div>}>
         {loadingState !== 'error' && (
           <div className="absolute inset-0 z-0">
             <Spline
@@ -246,8 +222,6 @@ const SplineViewer: React.FC<SplineViewerProps> = ({
         )}
       </Suspense>
 
-      {/* Only show loading overlay if actually loading */}
-      {loadingState === 'loading' && renderLoadingState()}
       {loadingState === 'error' && renderErrorState()}
       
       

@@ -19,7 +19,6 @@ const GoogleMapsEmbed: React.FC<GoogleMapsEmbedProps> = ({
   showFallback = true
 }) => {
   const [mapError, setMapError] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   // EdgeUp location coordinates (Chennai)
   const coordinates = "13.0603399902862,80.24673147573892";
@@ -36,35 +35,10 @@ const GoogleMapsEmbed: React.FC<GoogleMapsEmbedProps> = ({
     `https://www.google.com/maps/embed/v1/search?key=YOUR_API_KEY&q=${encodeURIComponent(location)}`
   ];
 
-  const handleMapLoad = () => {
-    setIsLoading(false);
-    setMapError(false);
-  };
-
   const handleMapError = () => {
-    setIsLoading(false);
     setMapError(true);
   };
 
-  useEffect(() => {
-    // Set loading timeout
-    const timer = setTimeout(() => {
-      if (isLoading) {
-        setIsLoading(false);
-      }
-    }, 10000); // 10 second timeout
-
-    return () => clearTimeout(timer);
-  }, [isLoading]);
-
-  const LoadingState = () => (
-    <div className="flex items-center justify-center h-full bg-gray-100 rounded-lg">
-      <div className="text-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-        <p className="text-gray-600">Loading map...</p>
-      </div>
-    </div>
-  );
 
   const ErrorState = () => (
     <div className="flex items-center justify-center h-full bg-gray-100 rounded-lg">
@@ -127,20 +101,14 @@ const GoogleMapsEmbed: React.FC<GoogleMapsEmbedProps> = ({
 
   return (
     <div className={`relative ${className}`} style={{ width, height }}>
-      {isLoading && <LoadingState />}
-      
       <iframe
         src={embedUrls[0]}
         width={width}
         height={height}
-        style={{ 
-          border: 0,
-          display: isLoading ? 'none' : 'block'
-        }}
+        style={{ border: 0 }}
         allowFullScreen
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
-        onLoad={handleMapLoad}
         onError={handleMapError}
         title="EdgeUp Location Map"
         allow="geolocation"
