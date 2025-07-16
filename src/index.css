@@ -1081,6 +1081,162 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* MOBILE-ONLY FIXES - ALL WRAPPED IN @media (max-width: 768px) */
+@media (max-width: 768px) {
+  /* FIX 1-5: Remove excessive white space on mobile */
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Remove unnecessary padding/margins on mobile sections */
+  .section-padding {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  .py-16, .py-20, .py-24 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  /* Fix mobile viewport height issues */
+  .min-h-screen {
+    min-height: 100vh !important;
+    padding-top: 4rem !important;
+    padding-bottom: 1rem !important;
+  }
+  
+  /* Remove large gaps between mobile sections */
+  section {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  
+  /* Optimize mobile container padding */
+  .container-custom {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  /* FIX 6-9: Make dashboard dots smaller on mobile */
+  .particles-container .particle-float,
+  .particles .particle,
+  [class*="particle"] {
+    width: 2px !important;
+    height: 2px !important;
+    opacity: 0.3 !important;
+  }
+  
+  /* Scale down floating orbs on mobile */
+  .absolute.bg-gradient-to-r {
+    transform: scale(0.5) !important;
+    opacity: 0.2 !important;
+  }
+  
+  /* Reduce blur effect on mobile decorative elements */
+  .blur-3xl {
+    filter: blur(40px) !important;
+  }
+  
+  /* FIX 10-14: Add white background to mobile menu */
+  .fixed.inset-0.bg-black\\/20 {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: none !important;
+  }
+  
+  /* Mobile menu white background with shadow */
+  .mobile-menu,
+  nav.lg\\:hidden,
+  .lg\\:hidden nav {
+    background: white !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  /* Ensure mobile menu text is readable */
+  .mobile-menu a,
+  .mobile-menu button,
+  .lg\\:hidden nav a,
+  .lg\\:hidden nav button {
+    color: #333 !important;
+  }
+  
+  /* FIX 15-18: Mobile hero content order */
+  /* Force flexbox column layout for hero section */
+  .flex.flex-col.lg\\:grid.lg\\:grid-cols-2 {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  
+  /* Mobile hero content stacking order */
+  .hero-text-content {
+    order: 1 !important;
+    margin-bottom: 2rem !important;
+  }
+  
+  .spline-container {
+    order: 2 !important;
+    margin-top: 0 !important;
+  }
+  
+  /* Override any existing order classes on mobile */
+  .order-1.lg\\:order-2 {
+    order: 2 !important;
+  }
+  
+  .order-2.lg\\:order-1 {
+    order: 1 !important;
+  }
+  
+  /* Mobile tagline positioning */
+  .inline-flex.items-center.px-3.py-2 {
+    margin-top: 0 !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Mobile hero spacing between elements */
+  .hero-text-content .space-y-6 {
+    gap: 1rem !important;
+  }
+  
+  /* Mobile hero buttons full width */
+  .hero-buttons {
+    width: 100% !important;
+  }
+  
+  .hero-buttons a {
+    width: 100% !important;
+  }
+  
+  /* Reduce robot animation height on mobile */
+  .h-\\[300px\\] {
+    height: 250px !important;
+  }
+  
+  /* Additional mobile optimization for white space */
+  .mb-16 {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .mt-8, .mt-12, .mt-16, .mt-20 {
+    margin-top: 0 !important;
+  }
+  
+  /* Remove extra spacing in mobile hero */
+  .space-y-8 {
+    gap: 1rem !important;
+  }
+  
+  /* Optimize mobile particle performance */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+  }
+}
+
 .section-padding {
   @apply py-16 md:py-20 lg:py-24;
 }
