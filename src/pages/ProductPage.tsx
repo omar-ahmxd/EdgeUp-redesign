@@ -70,7 +70,7 @@ const ProductPage: React.FC = () => {
     },
     { 
       letter: 'O', 
-      word: 'Observation', 
+      word: 'Optimization', 
       description: 'Continuous monitoring and adaptation based on learning progress',
       icon: Eye,
       color: 'from-teal-500 to-cyan-500',

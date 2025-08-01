@@ -32,7 +32,7 @@ const NewsArticlePage: React.FC = () => {
 
         <p>"This investment validates our vision of transforming how institutions prepare students for competitive exams," said Jubran Siddique, CEO of EdgeUp. "With this funding, we'll be able to reach more institutions and impact millions of students across India."</p>
 
-        <p>EdgeUp's proprietary PASCO framework (Personality, Aptitude, Skills, Character, Observation) has already shown remarkable results in pilot programs with leading coaching institutes. The platform's AI-driven personalization has helped students achieve up to 32% improvement in test scores.</p>
+        <p>EdgeUp's proprietary PASCO framework (Personality, Aptitude, Skills, Character, Optimization) has already shown remarkable results in pilot programs with leading coaching institutes. The platform's AI-driven personalization has helped students achieve up to 32% improvement in test scores.</p>
 
         <h2>Strategic Investor Participation</h2>
 

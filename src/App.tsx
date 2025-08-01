@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { testConnection } from './lib/supabase';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import HomePage from './pages/HomePage';
@@ -30,15 +29,6 @@ import { AuthProvider } from './context/AuthContext';
 import { CMSProvider } from './context/CMSContext';
 
 function App() {
-  useEffect(() => {
-    // Test Supabase connection on app load
-    testConnection().then(isConnected => {
-      if (!isConnected) {
-        console.error('Failed to connect to Supabase. Please check your configuration.');
-      }
-    });
-  }, []);
-
   return (
     <AuthProvider>
       <CMSProvider>

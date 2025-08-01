@@ -22,15 +22,23 @@ const Header: React.FC = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          if (window.scrollY > 10) {
+            setIsScrolled(true);
+          } else {
+            setIsScrolled(false);
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -60,15 +68,14 @@ const Header: React.FC = () => {
       } animate-slide-in-top`}
       style={{ position: 'fixed', top: 0, left: 0, right: 0 }}
     >
-      <div className="container-custom">
-        <div className="flex justify-between items-center">
+      <div className="w-full flex justify-between items-center pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-6 lg:pr-8">
           <Link to="/" className="flex items-center group">
             <div className="animate-pulse-slow">
               <Logo />
             </div>
           </Link>
 
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-6">
             {navItems.map((item, index) => (
               item.isButton ? (
                 <Link
@@ -105,7 +112,6 @@ const Header: React.FC = () => {
               </span>
             </div>
           </button>
-        </div>
       </div>
 
       {/* Mobile Menu */}

@@ -45,7 +45,7 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({ data }) => {
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 max-w-3xl mx-auto">
+        <div className="text-center mb-16 max-w-3xl mx-auto" data-aos="fade-up" data-aos-duration="800">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{data.title}</h2>
           <p className="text-lg text-gray-600">{data.subtitle}</p>
         </div>
@@ -67,9 +67,9 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({ data }) => {
           ))}
         </div>
 
-        <div className="mt-20 bg-gray-50 rounded-xl p-8 md:p-12">
+        <div className="mt-20 bg-gray-50 rounded-xl p-8 md:p-12" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div>
+            <div data-aos="fade-right" data-aos-duration="800" data-aos-delay="300">
               <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                 Powered by Advanced AI Technology
               </h3>
@@ -114,11 +114,12 @@ const FeatureSection: React.FC<FeatureSectionProps> = ({ data }) => {
               </ul>
             </div>
 
-            <div className="relative rounded-xl overflow-hidden h-80 lg:h-96">
+            <div className="relative rounded-xl overflow-hidden h-80 lg:h-96" data-aos="fade-left" data-aos-duration="800" data-aos-delay="400">
               <img 
                 src="https://images.pexels.com/photos/5940721/pexels-photo-5940721.jpeg?auto=compress&cs=tinysrgb&w=1600"
                 alt="AI learning technology" 
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-brand-primary/70 flex items-end p-6">
                 <span className="text-white font-semibold text-lg">Next-generation learning technology</span>

@@ -5,15 +5,16 @@ const Logo: React.FC = () => {
   const { siteSettings } = useCMS();
   
   // Use the new EdgeUp logo
-  const logoUrl = "/Screenshot 2025-06-18 174133.png";
+  const logoUrl = "/Edgeup-Logo.png";
   const siteName = siteSettings?.siteName || "EdgeUp";
   
   return (
-    <div className="flex items-center">
+    <div className="flex items-center justify-start h-12 w-44 overflow-hidden rounded-lg">
       <img 
         src={logoUrl}
         alt={siteName}
-        className="h-10"
+        className="h-full w-full object-cover object-left"
+        style={{ transform: 'scale(2) translateX(-30%)', transformOrigin: 'left center' }}
       />
     </div>
   );

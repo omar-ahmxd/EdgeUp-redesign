@@ -24,7 +24,9 @@
       "WebFetch(domain:prod.spline.design)",
       "Bash(npm run dev:*)",
       "Bash(npm run lint)",
-      "Bash(gh repo view:*)"
+      "Bash(gh repo view:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(rm:*)"
     ],
     "deny": []
   }

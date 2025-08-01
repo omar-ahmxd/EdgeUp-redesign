@@ -142,21 +142,21 @@ const HomePage: React.FC = () => {
               {/* Mobile: Animation first, Desktop: Content first */}
               <div className="order-2 lg:order-1 space-y-6 lg:space-y-8 relative z-20 w-full text-center lg:text-left hero-text-content">
                 <div className="space-y-6 lg:space-y-8">
-                  <div className="inline-flex items-center px-3 py-2 lg:px-4 lg:py-2 bg-white/20 backdrop-blur-md rounded-full text-[#094d88] text-sm font-medium border border-white/30 shadow-lg animate-fade-in-up mt-8 md:mt-12 lg:mt-16 xl:mt-20">
+                  <div className="inline-flex items-center px-3 py-2 lg:px-4 lg:py-2 bg-white/20 backdrop-blur-md rounded-full text-[#094d88] text-sm font-medium border border-white/30 shadow-lg animate-fade-in-up mt-8 md:mt-12 lg:mt-16 xl:mt-20" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
                     <span className="w-2 h-2 bg-[#10ac8b] rounded-full mr-2 animate-pulse"></span>
                     Your Path to Digital Success
                   </div>
                   
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#094d88] via-[#10ac8b] to-[#094d88] bg-clip-text text-transparent leading-tight relative z-30 animate-fade-in-up delay-200">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#094d88] via-[#10ac8b] to-[#094d88] bg-clip-text text-transparent leading-tight relative z-30 animate-fade-in-up delay-200" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
                     AI-Powered Learning Platform Built for Institutions and Personalised for Learners
                   </h1>
                   
-                  <p className="text-lg lg:text-xl text-gray-600 leading-relaxed animate-fade-in-up delay-300 relative z-30">
+                  <p className="text-lg lg:text-xl text-gray-600 leading-relaxed animate-fade-in-up delay-300 relative z-30" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
                     EdgeUp functions as an embedded study companion, enabling partners to offer adaptive learning journeys, smart content delivery, and real-time learner support. Our Agentic AI proactively anticipates learning needs and autonomously adjusts to optimize student outcomes
                   </p>
                 </div>
 
-                <div className="flex flex-col gap-4 animate-fade-in-up delay-500 relative z-30 hero-buttons">
+                <div className="flex flex-col gap-4 animate-fade-in-up delay-500 relative z-30 hero-buttons" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
                   <Link
                     to="/book-demo"
                     className="group relative overflow-hidden bg-gradient-to-r from-[#10ac8b] to-[#0d9488] text-white px-6 py-3 lg:px-8 lg:py-4 rounded-2xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 text-center w-full sm:w-auto"
@@ -180,7 +180,7 @@ const HomePage: React.FC = () => {
               </div>
 
               {/* Mobile: Animation first, Desktop: Animation last */}
-              <div className="order-1 lg:order-2 relative animate-fade-in-right delay-400 z-10 h-[300px] md:h-[400px] lg:h-[600px] w-full spline-container" style={{ background: 'transparent' }}>
+              <div className="order-1 lg:order-2 relative animate-fade-in-right delay-400 z-10 h-[300px] md:h-[400px] lg:h-[600px] w-full spline-container" style={{ background: 'transparent' }} data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
                 <SplineViewer
                   sceneUrl="https://prod.spline.design/rMylZE0LtWz1dT3B/scene.splinecode"
                   className="w-full h-full"
@@ -200,7 +200,7 @@ const HomePage: React.FC = () => {
         <IntersectionObserver>
           <section className="section-padding relative z-10">
             <div className="container-custom">
-              <div className="text-center mb-16">
+              <div className="text-center mb-16" data-aos="fade-up" data-aos-duration="800">
                 <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#094d88] to-[#10ac8b] bg-clip-text text-transparent mb-6">
                   Transform Learning with AI-Powered Precision
                 </h2>
@@ -211,7 +211,7 @@ const HomePage: React.FC = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {features.map((feature, index) => (
-                  <div key={index} className="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-4 animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <div key={index} className="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-4 animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s` }} data-aos="fade-up" data-aos-duration="800" data-aos-delay={index * 100}>
                     <div className="w-12 h-12 bg-gradient-to-r from-[#094d88] to-[#10ac8b] rounded-lg flex items-center justify-center mb-4">
                       <feature.icon className="h-6 w-6 text-white" />
                     </div>
@@ -228,7 +228,7 @@ const HomePage: React.FC = () => {
         <IntersectionObserver>
           <section className="section-padding relative z-10">
             <div className="container-custom">
-              <div className="text-center mb-16">
+              <div className="text-center mb-16" data-aos="fade-up" data-aos-duration="800">
                 <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#094d88] to-[#10ac8b] bg-clip-text text-transparent mb-6">
                   Personalized Learning for Every Path
                 </h2>
@@ -239,7 +239,7 @@ const HomePage: React.FC = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {learningPaths.map((path, index) => (
-                  <div key={index} className="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-4 animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <div key={index} className="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-4 animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s` }} data-aos="zoom-in" data-aos-duration="800" data-aos-delay={index * 150}>
                     <div className="w-12 h-12 bg-gradient-to-r from-[#094d88] to-[#10ac8b] rounded-lg flex items-center justify-center mb-4">
                       <path.icon className="h-6 w-6 text-white" />
                     </div>
@@ -267,13 +267,13 @@ const HomePage: React.FC = () => {
                 </div>
                 
                 <div className="relative z-10 text-center max-w-4xl mx-auto py-20 px-8">
-                  <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-8 animate-fade-in-up">
+                  <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-8 animate-fade-in-up" data-aos="fade-up" data-aos-duration="800">
                     Ready to Transform Education at Your Institution?
                   </h2>
-                  <p className="text-xl text-white/90 mb-12 animate-fade-in-up delay-200">
+                  <p className="text-xl text-white/90 mb-12 animate-fade-in-up delay-200" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
                     Join the growing network of forward-thinking institutions using EdgeUp to deliver personalized learning experiences.
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in-up delay-400">
+                  <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in-up delay-400" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
                     <Link
                       to="/book-demo"
                       className="group relative overflow-hidden bg-white text-[#094d88] px-8 py-4 rounded-2xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105"

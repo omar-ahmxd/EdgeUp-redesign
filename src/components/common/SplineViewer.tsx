@@ -194,10 +194,10 @@ const SplineViewer: React.FC<SplineViewerProps> = ({
     : sceneUrl;
 
   return (
-    <div className={`relative ${className}`} style={{ height }}>
+    <div className={`relative ${className}`} style={{ height, willChange: 'transform', transform: 'translate3d(0, 0, 0)', backfaceVisibility: 'hidden', contain: 'layout style paint' }}>
       <Suspense fallback={<div></div>}>
         {loadingState !== 'error' && (
-          <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 z-0" style={{ willChange: 'transform', transform: 'translate3d(0, 0, 0)', backfaceVisibility: 'hidden' }}>
             <Spline
               key={`${secureUrl}-${retryCount}`}
               scene={secureUrl}
@@ -211,6 +211,10 @@ const SplineViewer: React.FC<SplineViewerProps> = ({
                 top: 0,
                 left: 0,
                 zIndex: 1,
+                willChange: 'transform',
+                transform: 'translate3d(0, 0, 0)',
+                backfaceVisibility: 'hidden',
+                contain: 'layout style paint'
               }}
               // Add iframe permissions for better compatibility
               {...(window.location.hostname !== 'localhost' && {
