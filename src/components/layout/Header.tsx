@@ -63,12 +63,12 @@ const Header: React.FC = () => {
     <header 
       className={`fixed w-full z-50 transition-all duration-500 ease-out ${
         isScrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-lg py-2' 
-          : 'bg-white/90 backdrop-blur-sm py-4'
+          ? 'bg-white/95 backdrop-blur-md shadow-lg' 
+          : 'bg-white/90 backdrop-blur-sm'
       } animate-slide-in-top`}
-      style={{ position: 'fixed', top: 0, left: 0, right: 0 }}
+      style={{ position: 'fixed', top: 0, left: 0, right: 0, height: '64px' }}
     >
-      <div className="w-full flex justify-between items-center pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-6 lg:pr-8">
+      <div className="w-full h-full flex justify-between items-center pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-6 lg:pr-8">
           <Link to="/" className="flex items-center group">
             <div className="animate-pulse-slow">
               <Logo />
@@ -101,73 +101,97 @@ const Header: React.FC = () => {
             ))}
           </nav>
 
+          {/* Hamburger Menu Button - Mobile Only */}
           <button
-            className="lg:hidden text-gray-900 focus:outline-none transition-transform duration-300 hover:scale-110"
+            className={`lg:hidden relative p-2 focus:outline-none ${isOpen ? 'z-[10000]' : 'z-50'}`}
             onClick={toggleMenu}
             aria-label="Toggle menu"
           >
-            <div className="relative w-6 h-6">
-              <span className={`absolute inset-0 transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-0' : ''}`}>
-                {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </span>
+            <div className="w-6 h-6 flex flex-col justify-center space-y-1.5">
+              <span className={`block h-0.5 w-6 bg-gray-800 transform transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+              <span className={`block h-0.5 w-6 bg-gray-800 transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>
+              <span className={`block h-0.5 w-6 bg-gray-800 transform transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
             </div>
           </button>
       </div>
 
-      {/* Mobile Menu */}
-      <div className={`lg:hidden fixed inset-0 z-50 bg-white transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-        <div className="flex flex-col h-full">
-          <div className="flex justify-between items-center p-6 border-b border-gray-100">
-            <Logo />
-            <button
-              onClick={toggleMenu}
-              className="text-gray-900 transition-transform duration-300 hover:scale-110"
-            >
-              <X className="h-6 w-6" />
-            </button>
-          </div>
-          
-          <nav className="flex-1 px-6 py-8">
-            <div className="space-y-4">
-              {navItems.map((item, index) => (
-                item.isButton ? (
-                  <Link
-                    key={index}
-                    to={item.path}
-                    className="inline-flex items-center justify-center px-6 py-4 bg-[#10ac8b] text-white font-semibold rounded-lg hover:bg-[#0d9488] transition-all duration-300 w-full text-center text-lg min-h-[50px] animate-fade-in-left"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                    onClick={toggleMenu}
-                  >
-                    {item.title}
-                  </Link>
-                ) : (
-                  <Link
-                    key={index}
-                    to={item.path}
-                    className={`block py-4 text-lg font-medium transition-colors duration-300 min-h-[50px] flex items-center animate-fade-in-left ${
-                      location.pathname === item.path 
-                        ? 'text-[#094d88]' 
-                        : 'text-gray-700 hover:text-[#094d88]'
-                    }`}
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                    onClick={toggleMenu}
-                  >
-                    {item.title}
-                  </Link>
-                )
-              ))}
-            </div>
-          </nav>
-        </div>
-      </div>
-
-      {/* Mobile menu overlay */}
+      {/* Mobile Menu Overlay - Full Screen */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 lg:hidden"
-          onClick={toggleMenu}
-        />
+          className="lg:hidden fixed inset-0 z-[9999] bg-white animate-slide-in-right"
+        >
+          <div className="flex flex-col h-full">
+          {/* Menu Header with Close Button */}
+          <div className="flex justify-between items-center px-6 py-6">
+            <Link to="/" onClick={toggleMenu}>
+              <Logo />
+            </Link>
+            <button
+              onClick={toggleMenu}
+              className="p-2 focus:outline-none"
+              aria-label="Close menu"
+            >
+              <X className="h-8 w-8 text-gray-800" />
+            </button>
+          </div>
+
+          {/* Navigation Items */}
+          <nav className="flex-1 flex flex-col justify-center px-8">
+            <div className="space-y-8">
+              <Link
+                to="/product"
+                className="block text-2xl font-medium text-gray-800 hover:text-[#094d88] transition-colors duration-200"
+                onClick={toggleMenu}
+              >
+                Product
+              </Link>
+              <Link
+                to="/for-institutions"
+                className="block text-2xl font-medium text-gray-800 hover:text-[#094d88] transition-colors duration-200"
+                onClick={toggleMenu}
+              >
+                For Institutions
+              </Link>
+              <Link
+                to="/about"
+                className="block text-2xl font-medium text-gray-800 hover:text-[#094d88] transition-colors duration-200"
+                onClick={toggleMenu}
+              >
+                About Us
+              </Link>
+              <Link
+                to="/news"
+                className="block text-2xl font-medium text-gray-800 hover:text-[#094d88] transition-colors duration-200"
+                onClick={toggleMenu}
+              >
+                News
+              </Link>
+              <Link
+                to="/contact"
+                className="block text-2xl font-medium text-gray-800 hover:text-[#094d88] transition-colors duration-200"
+                onClick={toggleMenu}
+              >
+                Contact
+              </Link>
+            </div>
+          </nav>
+
+          {/* Book a Demo Button */}
+          <div className="px-8 pb-12">
+            <Link
+              to="/book-demo"
+              onClick={toggleMenu}
+              className="block w-full"
+            >
+              <button className="w-full py-4 bg-[#10ac8b] hover:bg-[#0d9488] text-white font-semibold text-lg rounded-lg transition-colors duration-200">
+                Book a Demo
+              </button>
+            </Link>
+          </div>
+        </div>
+        </div>
       )}
+
     </header>
   );
 };

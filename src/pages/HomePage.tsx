@@ -84,7 +84,7 @@ const HomePage: React.FC = () => {
 
 
   return (
-    <main className="overflow-hidden relative">
+    <main className="overflow-hidden relative pt-16 lg:pt-0">
         {/* Animated Background */}
         <div className="fixed inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-teal-50"></div>
@@ -135,14 +135,14 @@ const HomePage: React.FC = () => {
         </div>
 
         {/* Hero Section with Dashboard */}
-        <section className="min-h-screen relative z-10">
+        <section className="min-h-screen relative z-10 pt-8 md:pt-12 lg:pt-16">
           <div className="container-custom">
-            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-center min-h-screen py-16 lg:py-20">
+            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-center py-8 md:py-12 lg:py-16">
               
               {/* Mobile: Animation first, Desktop: Content first */}
               <div className="order-2 lg:order-1 space-y-6 lg:space-y-8 relative z-20 w-full text-center lg:text-left hero-text-content">
                 <div className="space-y-6 lg:space-y-8">
-                  <div className="inline-flex items-center px-3 py-2 lg:px-4 lg:py-2 bg-white/20 backdrop-blur-md rounded-full text-[#094d88] text-sm font-medium border border-white/30 shadow-lg animate-fade-in-up mt-8 md:mt-12 lg:mt-16 xl:mt-20" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
+                  <div className="inline-flex items-center px-4 py-2.5 bg-gradient-to-r from-blue-50 to-teal-50 backdrop-blur-md rounded-full text-[#094d88] text-sm font-semibold border border-blue-100 shadow-md animate-fade-in-up mx-auto lg:mx-0" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
                     <span className="w-2 h-2 bg-[#10ac8b] rounded-full mr-2 animate-pulse"></span>
                     Your Path to Digital Success
                   </div>
@@ -156,19 +156,19 @@ const HomePage: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="flex flex-col gap-4 animate-fade-in-up delay-500 relative z-30 hero-buttons" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
+                <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up delay-500 relative z-30 hero-buttons w-full sm:w-auto" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
                   <Link
                     to="/book-demo"
-                    className="group relative overflow-hidden bg-gradient-to-r from-[#10ac8b] to-[#0d9488] text-white px-6 py-3 lg:px-8 lg:py-4 rounded-2xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 text-center w-full sm:w-auto"
+                    className="group relative overflow-hidden bg-gradient-to-r from-[#10ac8b] to-[#0d9488] text-white px-6 py-4 rounded-2xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 text-center w-full sm:w-auto"
                   >
                     <span className="relative z-10 flex items-center justify-center">
                       Book a Demo
-                      <ArrowRight className="ml-2 h-4 w-4 lg:h-5 lg:w-5 transition-transform group-hover:translate-x-2" />
+                      <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-2" />
                     </span>
                   </Link>
                   <Link
                     to="/product"
-                    className="group relative overflow-hidden border-2 border-[#094d88] text-[#094d88] px-6 py-3 lg:px-8 lg:py-4 rounded-2xl font-semibold hover:bg-[#094d88] hover:text-white transition-all duration-500 hover:scale-105 text-center w-full sm:w-auto"
+                    className="group relative overflow-hidden border-2 border-[#094d88] text-[#094d88] px-6 py-4 rounded-2xl font-semibold hover:bg-[#094d88] hover:text-white transition-all duration-500 hover:scale-105 text-center w-full sm:w-auto"
                   >
                     <span className="relative z-10 flex items-center justify-center">
                       <Play className="mr-2 h-4 w-4" />
