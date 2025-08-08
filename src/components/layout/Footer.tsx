@@ -168,7 +168,7 @@ const Footer: React.FC = () => {
               <div className="mb-6">
                 <h2 className="text-2xl font-bold text-white mb-4">EdgeUp</h2>
                 <p className="text-white/80 leading-relaxed">
-                  India's first AI-driven learning companion tailored for institutions
+                  A product of Zaryah Angel Network. India's first AI-driven learning companion tailored for institutions
                   preparing students for UPSC, state exams, and other competitive tests.
                 </p>
               </div>
@@ -240,7 +240,7 @@ const Footer: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               <p className="text-white/60 text-sm">
-                © {new Date().getFullYear()} EdgeUp Technologies. All rights reserved.
+                © {new Date().getFullYear()} EdgeUP a product of Zaryah Angel Network. All rights reserved.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6 text-sm">
