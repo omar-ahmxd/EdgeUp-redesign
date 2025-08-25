@@ -45,7 +45,7 @@ const AboutPage: React.FC = () => {
       name: "Khalid Mohamed",
       position: "Chairman",
       bio: "Accomplished professional with 24+ years of experience in business development, education, and social entrepreneurship. Passionate about leveraging technology and strategic partnerships to drive educational transformation and community empowerment.",
-      image: "https://media.licdn.com/dms/image/v2/D5603AQFAafycikw0qg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1681290083962?e=1754524800&v=beta&t=mI399UEUgknOinTlsXcZYno3lrkaPnVu_mnh9Bi_D_8",
+      image: "/khalid-mohamed.jpeg",
       linkedin: "https://www.linkedin.com/in/omsmakhalid/",
       twitter: "https://www.instagram.com/edgeup_tech/"
     }
@@ -291,37 +291,47 @@ const AboutPage: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
               {teamMembers.map((member, index) => (
-                <div key={index} className="bg-white/10 backdrop-blur-md rounded-3xl overflow-hidden border border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-700 hover:scale-105 animate-fade-in-up" style={{ animationDelay: `${index * 0.2}s` }}>
-                  <div className="p-8">
-                    <div className="flex flex-col items-center text-center space-y-6">
-                      <img 
-                        src={member.image} 
-                        alt={member.name} 
-                        className="w-40 h-40 rounded-full object-cover border-4 border-white/20 shadow-xl"
-                      />
+                <div key={index} className="bg-white/10 backdrop-blur-md rounded-3xl overflow-hidden border border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-700 md:hover:scale-105 animate-fade-in-up" style={{ animationDelay: `${index * 0.2}s` }}>
+                  {/* Profile Image Section - Centered */}
+                  <div className="flex justify-center pt-8 pb-4">
+                    <img 
+                      src={member.image} 
+                      alt={member.name} 
+                      className="w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full object-cover border-4 border-white/30 shadow-xl"
+                    />
+                  </div>
+                  
+                  {/* Content Section */}
+                  <div className="px-6 pb-8 md:px-8">
+                    <div className="text-center space-y-4">
+                      {/* Name and Title */}
                       <div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-2">{member.name}</h3>
-                        <p className="text-[#094d88] font-semibold text-lg mb-4">{member.position}</p>
-                        <p className="text-gray-600 leading-relaxed">{member.bio}</p>
+                        <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">{member.name}</h3>
+                        <p className="text-[#094d88] font-semibold text-base md:text-lg">{member.position}</p>
                       </div>
-                      <div className="flex space-x-4">
+                      
+                      {/* Bio */}
+                      <p className="text-gray-600 leading-relaxed text-sm md:text-base">{member.bio}</p>
+                      
+                      {/* Social Links */}
+                      <div className="flex justify-center space-x-4 pt-2">
                         <a 
                           href={member.linkedin} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-gray-600 hover:text-[#094d88] hover:bg-white/30 transition-all duration-300 hover:scale-110"
+                          className="w-10 h-10 md:w-12 md:h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-gray-600 hover:text-[#094d88] hover:bg-white/30 transition-all duration-300 hover:scale-110"
                         >
-                          <Linkedin size={20} />
+                          <Linkedin size={18} />
                         </a>
                         <a 
                           href={member.twitter} 
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-gray-600 hover:text-[#094d88] hover:bg-white/30 transition-all duration-300 hover:scale-110"
+                          className="w-10 h-10 md:w-12 md:h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-gray-600 hover:text-[#094d88] hover:bg-white/30 transition-all duration-300 hover:scale-110"
                         >
-                          <Twitter size={20} />
+                          <Twitter size={18} />
                         </a>
                       </div>
                     </div>
@@ -347,35 +357,48 @@ const AboutPage: React.FC = () => {
             </div>
 
             <div className="max-w-6xl mx-auto">
-              {/* COMPLETELY NEW TIMELINE LAYOUT - NO LINE ISSUES */}
-              <div className="space-y-16">
-                {milestones.map((milestone, index) => (
-                  <div key={index} className="relative animate-fade-in-up" style={{ animationDelay: `${index * 0.2}s` }}>
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                      {/* Year Column */}
-                      <div className="lg:col-span-2 text-center lg:text-right">
-                        <div className="text-4xl font-bold text-[#10ac8b] mb-2">{milestone.year}</div>
-                      </div>
-
-                      {/* Timeline Dot and Line */}
-                      <div className="lg:col-span-1 flex flex-col items-center">
-                        <div className="w-8 h-8 bg-gradient-to-r from-[#094d88] to-[#10ac8b] rounded-full border-4 border-white shadow-lg z-10"></div>
-                        {/* Connecting line to next milestone */}
-                        {index < milestones.length - 1 && (
-                          <div className="w-1 h-16 bg-gradient-to-b from-[#094d88] to-[#10ac8b] mt-4"></div>
-                        )}
-                      </div>
-
-                      {/* Content Card */}
-                      <div className="lg:col-span-9">
-                        <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105">
-                          <h3 className="text-2xl font-semibold mb-3 text-gray-900">{milestone.title}</h3>
-                          <p className="text-gray-600 leading-relaxed text-lg">{milestone.description}</p>
+              {/* Mobile-Optimized Timeline Layout */}
+              <div className="relative">
+                {/* Vertical Line for Mobile */}
+                <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#094d88] via-[#10ac8b] to-[#094d88] md:transform md:-translate-x-1/2"></div>
+                
+                <div className="space-y-12 md:space-y-16">
+                  {milestones.map((milestone, index) => (
+                    <div key={index} className="relative animate-fade-in-up" style={{ animationDelay: `${index * 0.2}s` }}>
+                      <div className="flex items-start md:items-center">
+                        {/* Mobile: Left-aligned timeline */}
+                        <div className="flex-shrink-0 md:hidden">
+                          <div className="w-16 h-16 bg-gradient-to-r from-[#094d88] to-[#10ac8b] rounded-full border-4 border-white shadow-lg flex items-center justify-center">
+                            <span className="text-white font-bold text-xs">{index + 1}</span>
+                          </div>
+                        </div>
+                        
+                        {/* Desktop: Centered timeline */}
+                        <div className="hidden md:flex md:flex-1 md:justify-end md:pr-12">
+                          <div className="text-right">
+                            <div className="text-4xl font-bold text-[#10ac8b]">{milestone.year}</div>
+                          </div>
+                        </div>
+                        
+                        {/* Desktop: Center dot */}
+                        <div className="hidden md:block flex-shrink-0">
+                          <div className="w-8 h-8 bg-gradient-to-r from-[#094d88] to-[#10ac8b] rounded-full border-4 border-white shadow-lg"></div>
+                        </div>
+                        
+                        {/* Content Card */}
+                        <div className="flex-1 ml-6 md:ml-12">
+                          {/* Mobile Year Display */}
+                          <div className="md:hidden text-2xl font-bold text-[#10ac8b] mb-3">{milestone.year}</div>
+                          
+                          <div className="bg-white/10 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500">
+                            <h3 className="text-xl md:text-2xl font-semibold mb-2 md:mb-3 text-gray-900">{milestone.title}</h3>
+                            <p className="text-gray-600 leading-relaxed text-base md:text-lg">{milestone.description}</p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
