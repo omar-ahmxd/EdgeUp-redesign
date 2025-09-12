@@ -9,12 +9,12 @@ const Logo: React.FC = () => {
   const siteName = siteSettings?.siteName || "EdgeUp";
   
   return (
-    <div className="flex items-center justify-start h-12 w-44 overflow-hidden rounded-lg">
+    <div className="flex items-center justify-start h-10 w-36 overflow-hidden rounded-lg">
       <img 
         src={logoUrl}
         alt={siteName}
         className="h-full w-full object-cover object-left"
-        style={{ transform: 'scale(2) translateX(-30%)', transformOrigin: 'left center' }}
+        style={{ transform: 'scale(1.8) translateX(-25%)', transformOrigin: 'left center' }}
       />
     </div>
   );

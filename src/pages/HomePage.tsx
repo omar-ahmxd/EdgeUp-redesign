@@ -14,7 +14,9 @@ import {
   Play,
   Building,
   GraduationCap,
-  BookOpen
+  BookOpen,
+  Linkedin,
+  Twitter
 } from 'lucide-react';
 import { useCMS } from '../context/CMSContext';
 import AnimatedCounter from '../components/common/AnimatedCounter';
@@ -245,6 +247,88 @@ const HomePage: React.FC = () => {
                     </div>
                     <h3 className="text-xl font-semibold mb-3 text-gray-900">{path.title}</h3>
                     <p className="text-gray-600">{path.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </IntersectionObserver>
+
+        {/* Leadership Team Section */}
+        <IntersectionObserver>
+          <section className="section-padding relative z-10">
+            <div className="container-custom">
+              <div className="text-center mb-16" data-aos="fade-up" data-aos-duration="800">
+                <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#094d88] to-[#10ac8b] bg-clip-text text-transparent mb-6">
+                  Leadership Team
+                </h2>
+                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                  Meet the visionaries behind EdgeUp's mission to transform education.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
+                {[
+                  {
+                    name: "Jubran Siddique",
+                    position: "Chief Executive Officer",
+                    bio: "Visionary CEO and former Forbes Business Council member with expertise across fintech and technology sectors. Dedicated to creating transformative solutions that bridge innovation with real-world impact.",
+                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWjE2Wy3ZAA_uaEXnz5pvYbmGpxVOhv2q3mg&s",
+                    linkedin: "https://www.linkedin.com/in/jubransiddique/",
+                    twitter: "https://www.instagram.com/edgeup_tech/"
+                  },
+                  {
+                    name: "Khalid Mohamed",
+                    position: "Chairman",
+                    bio: "Accomplished professional with 24+ years of experience in business development, education, and social entrepreneurship. Passionate about leveraging technology and strategic partnerships to drive educational transformation and community empowerment.",
+                    image: "/khalid-mohamed.jpeg",
+                    linkedin: "https://www.linkedin.com/in/omsmakhalid/",
+                    twitter: "https://www.instagram.com/edgeup_tech/"
+                  }
+                ].map((member, index) => (
+                  <div key={index} className="bg-white/10 backdrop-blur-md rounded-3xl overflow-hidden border border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-700 md:hover:scale-105 animate-fade-in-up" style={{ animationDelay: `${index * 0.2}s` }} data-aos="fade-up" data-aos-duration="800" data-aos-delay={index * 200}>
+                    {/* Profile Image Section - Centered */}
+                    <div className="flex justify-center pt-8 pb-4">
+                      <img 
+                        src={member.image} 
+                        alt={member.name} 
+                        className="w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full object-cover border-4 border-white/30 shadow-xl"
+                      />
+                    </div>
+                    
+                    {/* Content Section */}
+                    <div className="px-6 pb-8 md:px-8">
+                      <div className="text-center space-y-4">
+                        {/* Name and Title */}
+                        <div>
+                          <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">{member.name}</h3>
+                          <p className="text-[#094d88] font-semibold text-base md:text-lg">{member.position}</p>
+                        </div>
+                        
+                        {/* Bio */}
+                        <p className="text-gray-600 leading-relaxed text-sm md:text-base">{member.bio}</p>
+                        
+                        {/* Social Links */}
+                        <div className="flex justify-center space-x-4 pt-2">
+                          <a 
+                            href={member.linkedin} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="w-10 h-10 md:w-12 md:h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-gray-600 hover:text-[#094d88] hover:bg-white/30 transition-all duration-300 hover:scale-110"
+                          >
+                            <Linkedin className="w-4 h-4 md:w-5 md:h-5" />
+                          </a>
+                          <a 
+                            href={member.twitter} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="w-10 h-10 md:w-12 md:h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-gray-600 hover:text-[#094d88] hover:bg-white/30 transition-all duration-300 hover:scale-110"
+                          >
+                            <Twitter className="w-4 h-4 md:w-5 md:h-5" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
