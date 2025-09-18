@@ -85,22 +85,152 @@ const ContactPage: React.FC = () => {
     }
   };
 
-  const faqs = [
+  const faqCategories = [
     {
-      question: "How quickly can we implement EdgeUp?",
-      answer: "Most institutions can be fully onboarded within 2-4 weeks, depending on the scale of implementation and existing systems integration."
+      title: "General",
+      icon: "📚",
+      faqs: [
+        {
+          question: "What is EdgeUp?",
+          answer: "EdgeUp is an AI-powered learning platform designed for institutions that train students for competitive exams, school education, and university programs. It personalizes learning journeys, tracks progress through advanced analytics, and provides tools for teachers to manage and improve student outcomes."
+        },
+        {
+          question: "Who can use EdgeUp?",
+          answer: "EdgeUp is built for coaching academies, schools, colleges, and universities. Students access EdgeUp through their institution, where it acts as a smart learning companion alongside regular classes."
+        },
+        {
+          question: "Does EdgeUp replace coaching or teachers?",
+          answer: "No. EdgeUp does not replace teachers. Instead, it complements classroom learning by providing personalized practice, instant feedback, and AI-driven insights. Teachers focus on mentoring and emotional support, while EdgeUp ensures every student's academic progress is tracked and improved."
+        },
+        {
+          question: "Is EdgeUp only for India or also for overseas institutions?",
+          answer: "At present, EdgeUp is focused on Indian institutions and exams. However, the platform is designed to scale globally, and in the near future, it will support overseas institutions and international programs."
+        },
+        {
+          question: "Which exams and courses are covered on EdgeUp?",
+          answer: "EdgeUp currently supports: UPSC, State PSCs (like TNPSC, KPSC, MPSC, etc.), SSC, RRB, Banking & others; Schools: Class 8 to Class 12 (all major subjects); Universities & Colleges: General courses with scope to expand into specialized programs."
+        }
+      ]
     },
     {
-      question: "Does EdgeUp integrate with our existing LMS?",
-      answer: "Yes, EdgeUp is designed to integrate seamlessly with most popular LMS platforms, including Moodle, Canvas, and custom solutions."
+      title: "For Students",
+      icon: "🎓",
+      faqs: [
+        {
+          question: "How does EdgeUp personalize my learning?",
+          answer: "EdgeUp uses PASCO (Performance & Skill Companion) and AI-driven tools to track your strengths, weaknesses, and learning style. Based on this, it creates a personalized study path from topic-level recommendations to practice tests so that you learn at your own pace and improve steadily."
+        },
+        {
+          question: "Is the AI accurate and reliable for exam preparation?",
+          answer: "Yes. EdgeUp's AI is trained specifically for competitive exams, school, and college syllabi. Our proprietary Small Language Model (SLM) is built with a focus on accuracy, relevance, and exam-oriented results, ensuring that the guidance you receive is aligned with actual exam patterns."
+        },
+        {
+          question: "Can I use EdgeUp in my regional language?",
+          answer: "Yes. EdgeUp supports multilingual learning, so you can study in English, Hindi, Tamil, and other regional languages. This helps students from diverse backgrounds access high-quality learning in a language they are most comfortable with."
+        },
+        {
+          question: "Does EdgeUp work offline or only online?",
+          answer: "Currently, EdgeUp is cloud-based and works online to provide real-time analytics and AI-driven support. However, selected features like downloaded materials and past question papers can be accessed offline."
+        },
+        {
+          question: "How is my data protected?",
+          answer: "We take data privacy very seriously. All student information is securely encrypted, and EdgeUp follows strict compliance with data protection standards. Your personal details and academic performance are only accessible to you and your institution."
+        },
+        {
+          question: "Will EdgeUp help me score better in exams or just provide practice?",
+          answer: "EdgeUp goes beyond practice, it provides adaptive guidance, detailed analytics, and smart assessments that show you exactly where to improve. With consistent usage, EdgeUp helps boost both knowledge retention and exam performance."
+        },
+        {
+          question: "Can I use EdgeUp individually (B2C) or only through my institute?",
+          answer: "Right now, EdgeUp is available only through partner institutions (B2B model). Students access the platform via their coaching institute, school, or college. In the future, EdgeUp will also be available directly to individual learners (B2C)."
+        }
+      ]
     },
     {
-      question: "How is EdgeUp priced?",
-      answer: "We offer flexible pricing models based on institution size and feature requirements. Contact us for a custom quote tailored to your needs."
+      title: "For Institutions",
+      icon: "🏫",
+      faqs: [
+        {
+          question: "How does EdgeUp support coaching academies, schools, and universities?",
+          answer: "EdgeUp provides institutions with AI-powered tools to improve student learning outcomes, track performance, and manage academic operations efficiently. It helps teachers save time, gives administrators real-time insights, and ensures students get personalized learning support."
+        },
+        {
+          question: "Can EdgeUp be white-labeled with our institution's brand?",
+          answer: "Yes. EdgeUp offers white-label solutions so that institutions can run the platform under their own brand name. This means students see your institution's logo, colors, and identity while still benefiting from EdgeUp's technology."
+        },
+        {
+          question: "Can we bulk onboard students and track them easily?",
+          answer: "Absolutely. Institutions can bulk-upload student data, assign them to specific courses, and track their progress through role-based dashboards for admins, faculty, and students."
+        },
+        {
+          question: "What analytics and dashboards are available for faculty?",
+          answer: "Faculty get access to real-time dashboards showing: Student attendance and engagement, Topic-wise performance reports, Test results and progress trends, and Comparative analytics across batches. This helps teachers identify weak areas quickly and provide targeted support."
+        },
+        {
+          question: "Will EdgeUp provide training for our teachers and staff?",
+          answer: "Yes. EdgeUp provides onboarding sessions, training modules, and ongoing support for faculty and admin staff. Our goal is to make the platform simple and effective for everyone in your institution."
+        },
+        {
+          question: "Can EdgeUp integrate with our existing LMS or ERP?",
+          answer: "Yes. EdgeUp can integrate with most popular LMS and ERP systems, making it easy to adopt without disrupting your existing workflows."
+        },
+        {
+          question: "Does EdgeUp provide its own LMS and basic ERP tools?",
+          answer: "Yes. EdgeUp also includes a built-in LMS for course management and a basic ERP for handling academic operations such as student records, scheduling, and reports."
+        }
+      ]
     },
     {
-      question: "Is training provided for our staff?",
-      answer: "Absolutely. We provide comprehensive training for faculty and staff as part of our implementation process, ensuring everyone can maximize the platform's potential."
+      title: "Technology & Features",
+      icon: "🚀",
+      faqs: [
+        {
+          question: "What is the difference between EdgeUp's Small Language Model (SLM) and regular Large Language Models (LLMs)?",
+          answer: "EdgeUp's SLM (Small Language Model) is purpose-built for education. Unlike generic LLMs, our SLM is: 75x more cost-efficient while maintaining the same learning quality, Trained specifically on competitive exams, school, and college content, Faster and lighter, making it easier for institutions to scale without heavy infrastructure costs. This ensures students and teachers get accurate, exam-relevant, and affordable AI support."
+        },
+        {
+          question: "How does EdgeUp ensure low cost without compromising quality?",
+          answer: "By using our proprietary SLM and intelligent system design, EdgeUp reduces computational cost while maintaining accuracy, contextual relevance, and adaptive guidance. Institutions benefit from enterprise-grade AI at a fraction of the cost of traditional systems."
+        },
+        {
+          question: "What unique features does EdgeUp provide?",
+          answer: "EdgeUp brings together multiple innovations in one platform: PASCO – Intelligent student profiling and skill optimisation, e-Ustad AI Mentor – 24/7 personalized learning guide, OCR & Document Intelligence – Converts handwritten/printed notes into searchable content, Smart Assessments & Real-Time Analytics – Deeper insights into student performance, Multilingual Learning Support – Regional and national languages for wider accessibility, Role-Based Dashboards – Separate views for admin, faculty, and students."
+        },
+        {
+          question: "What is PASCO and how does it help students?",
+          answer: "PASCO stands for Performance, Aptitude, Skills & Character Optimisation. It is EdgeUp's intelligent student profiling and progress companion. Every student begins with a 3-part assessment: VARK Test (identifies learning style), PASCO Assessment (measures personality traits, aptitude levels, skills, and character strengths), and Subject Matter Assessment. With these combined, EdgeUp builds a 360° learner profile, enabling tailored study plans, early identification of strengths and weak areas, targeted practice, and actionable insights for teachers and institutions."
+        },
+        {
+          question: "What is e-Ustad and how does it work?",
+          answer: "e-Ustad is EdgeUp's AI-powered mentor—a personal learning guide available 24/7. It answers doubts instantly with step-by-step explanations, suggests practice questions based on weak areas, provides motivation and study tips during preparation, and works in multiple languages so learners feel comfortable. Unlike generic chatbots, e-Ustad is trained only on academic and exam content, making it a reliable and exam-focused mentor."
+        },
+        {
+          question: "How does EdgeUp's OCR & Document Intelligence help?",
+          answer: "EdgeUp's OCR (Optical Character Recognition) technology converts handwritten notes, printed books, and question papers into searchable, digital content. Institutions can digitize resources quickly, teachers can create updated material effortlessly, and students get easy access to relevant resources."
+        }
+      ]
+    },
+    {
+      title: "Pricing & Support",
+      icon: "💰",
+      faqs: [
+        {
+          question: "How is EdgeUp priced for institutions?",
+          answer: "EdgeUp follows a per student, per course pricing model. The institution subscribes to EdgeUp on behalf of its students, and fees are billed quarterly on a prepaid basis. Pricing may vary depending on the course type (competitive exams, schools, or colleges)."
+        },
+        {
+          question: "Do students pay directly or through institutions?",
+          answer: "Currently, EdgeUp is available only in the B2B model. This means students access EdgeUp through their school, college, or coaching institute. The institution collects the student fees, and EdgeUp is paid through the institution. In the future, EdgeUp will also be available as a direct B2C offering for individual learners."
+        },
+        {
+          question: "What kind of support will we receive after onboarding?",
+          answer: "Institutions receive end-to-end support including: Dedicated account manager for smooth implementation, Teacher training & onboarding sessions, Office-hours technical support (phone, email, chat) for issue resolution, and Access to our knowledge base and help resources. Our goal is to make sure students, teachers, and administrators get maximum value from EdgeUp."
+        },
+        {
+          question: "Is EdgeUp available for individual purchase (B2C)?",
+          answer: "Not yet. At present, EdgeUp is available only through partner institutions. However, we are working towards launching a B2C version that will allow students to subscribe directly in the future."
+        }
+      ]
     }
   ];
 
@@ -404,37 +534,56 @@ const ContactPage: React.FC = () => {
               </p>
             </div>
 
-            <div className="max-w-4xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {faqs.map((faq, index) => (
-                  <div 
-                    key={index} 
-                    className={`group bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 animate-fade-in-up`}
-                    style={{ animationDelay: `${index * 100}ms` }}
-                  >
-                    <button
-                      onClick={() => toggleFaq(index)}
-                      className="w-full text-left p-8 font-semibold text-gray-900 hover:bg-white/10 transition-all duration-300 flex items-center justify-between group-hover:text-[#094d88]"
-                    >
-                      <span className="text-lg pr-4">{faq.question}</span>
-                      <div className={`transition-transform duration-500 ${expandedFaq === index ? 'rotate-180' : ''}`}>
-                        {expandedFaq === index ? (
-                          <ChevronUp className="h-6 w-6 text-[#10ac8b]" />
-                        ) : (
-                          <ChevronDown className="h-6 w-6 text-gray-500 group-hover:text-[#10ac8b]" />
-                        )}
-                      </div>
-                    </button>
-                    <div className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                      expandedFaq === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                    }`}>
-                      <div className="px-8 pb-8 text-gray-600 leading-relaxed">
-                        {faq.answer}
-                      </div>
-                    </div>
+            <div className="max-w-5xl mx-auto">
+              {faqCategories.map((category, categoryIndex) => (
+                <div key={categoryIndex} className="mb-12">
+                  {/* Category Header */}
+                  <div className="flex items-center mb-6">
+                    <span className="text-3xl mr-3">{category.icon}</span>
+                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
+                      {category.title}
+                    </h3>
                   </div>
-                ))}
-              </div>
+
+                  {/* FAQ Items in this category */}
+                  <div className="space-y-4">
+                    {category.faqs.map((faq, faqIndex) => {
+                      const globalIndex = faqCategories
+                        .slice(0, categoryIndex)
+                        .reduce((acc, cat) => acc + cat.faqs.length, 0) + faqIndex;
+
+                      return (
+                        <div
+                          key={globalIndex}
+                          className={`group bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 animate-fade-in-up`}
+                          style={{ animationDelay: `${Math.min(globalIndex * 30, 1500)}ms` }}
+                        >
+                          <button
+                            onClick={() => toggleFaq(globalIndex)}
+                            className="w-full text-left p-6 font-semibold text-gray-900 hover:bg-white/10 transition-all duration-300 flex items-center justify-between group-hover:text-[#094d88]"
+                          >
+                            <span className="text-base md:text-lg pr-4">{faq.question}</span>
+                            <div className={`transition-transform duration-500 flex-shrink-0 ${expandedFaq === globalIndex ? 'rotate-180' : ''}`}>
+                              {expandedFaq === globalIndex ? (
+                                <ChevronUp className="h-5 w-5 md:h-6 md:w-6 text-[#10ac8b]" />
+                              ) : (
+                                <ChevronDown className="h-5 w-5 md:h-6 md:w-6 text-gray-500 group-hover:text-[#10ac8b]" />
+                              )}
+                            </div>
+                          </button>
+                          <div className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                            expandedFaq === globalIndex ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                          }`}>
+                            <div className="px-6 pb-6 text-gray-600 leading-relaxed text-sm md:text-base">
+                              {faq.answer}
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
