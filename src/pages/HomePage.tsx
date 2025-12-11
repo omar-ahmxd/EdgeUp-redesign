@@ -439,7 +439,7 @@ const HomePage: React.FC = () => {
             <div className="text-center">
               <Link
                 to="/about"
-                className="inline-flex items-center gap-2 text-[#094d88] dark:text-accent-500 font-semibold hover:text-[#10ac8b] transition-colors group"
+                className="inline-flex items-center gap-3 bg-gradient-to-r from-[#094d88] to-[#10ac8b] text-white px-8 py-4 rounded-full font-bold shadow-lg shadow-[#094d88]/30 hover:shadow-xl hover:shadow-[#10ac8b]/40 hover:scale-105 transition-all duration-300 group"
               >
                 Explore Our Mission & Values
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
