@@ -55,9 +55,9 @@ const HowItWorksTimeline: React.FC<Props> = ({ steps = defaultSteps }) => {
             className="relative group"
           >
             {/* Card */}
-            <div className="relative bg-white dark:bg-slate-900 rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-slate-800 hover:border-[#10ac8b]/30 h-full">
-              {/* Step Number Badge */}
-              <div className="absolute -top-4 left-6">
+            <div className="relative bg-white dark:bg-slate-900 rounded-3xl p-6 pl-16 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-slate-800 hover:border-[#10ac8b]/30 h-full">
+              {/* Step Number Badge - positioned on the left */}
+              <div className="absolute top-6 left-4">
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#094d88] to-[#10ac8b] rounded-full blur-lg opacity-40 group-hover:opacity-60 transition-opacity" />
                   <div className="relative w-8 h-8 bg-gradient-to-r from-[#094d88] to-[#10ac8b] rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
@@ -67,7 +67,7 @@ const HowItWorksTimeline: React.FC<Props> = ({ steps = defaultSteps }) => {
               </div>
 
               {/* Icon */}
-              <div className="mt-4 mb-4">
+              <div className="mb-4">
                 <div className="w-14 h-14 bg-gradient-to-br from-[#094d88]/10 to-[#10ac8b]/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   <div className="text-[#094d88] dark:text-[#10ac8b]">
                     {step.icon}

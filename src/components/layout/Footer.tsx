@@ -28,7 +28,6 @@ const Footer: React.FC = () => {
             {/* Company Info */}
             <div className="space-y-6 max-w-2xl">
               <div>
-                <h2 className="text-2xl font-bold text-white mb-3">EdgeUp</h2>
                 <p className="text-white/80 leading-relaxed">
                   A product of Zaryah Angel Network. India's first AI-driven learning companion tailored for institutions
                   preparing students for UPSC, state exams, and other competitive tests.

@@ -400,7 +400,7 @@ const HomePage: React.FC = () => {
               {[
                 {
                   name: "Khalid Mohamed",
-                  role: "Chair Managing Director",
+                  role: "Chairman and Managing Director",
                   image: "/khalid-mohamed.jpeg",
                   linkedin: "https://www.linkedin.com/in/omsmakhalid/"
                 },

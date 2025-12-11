@@ -29,7 +29,6 @@ import ProtectedRoute from './components/admin/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 import { CMSProvider } from './context/CMSContext';
 import { ThemeProvider } from './context/ThemeContext';
-import ChatbotWidget from './components/common/ChatbotWidget';
 
 function App() {
   return (
@@ -187,7 +186,6 @@ function App() {
                   </>
                 } /> */}
               </Routes>
-              <ChatbotWidget />
             </div>
           </Router>
         </ThemeProvider>
