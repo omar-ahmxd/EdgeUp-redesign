@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(rg:*)",
+      "Bash(npx jsrepo add:*)",
+      "Bash(npm install)",
+      "Bash(npm run build:*)",
+      "Bash(npm install:*)",
+      "Bash(netlify deploy:*)",
+      "Bash(git init:*)",
+      "Bash(git branch:*)",
+      "Bash(touch:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git config:*)",
+      "Bash(git remote add:*)",
+      "Bash(git push:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(ls:*)",
+      "Bash(ssh-keygen:*)",
+      "Bash(cat:*)",
+      "Bash(curl:*)",
+      "WebFetch(domain:prod.spline.design)",
+      "Bash(npm run dev:*)",
+      "Bash(npm run lint)",
+      "Bash(gh repo view:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(rm:*)"
+    ],
+    "deny": []
+  }
+}

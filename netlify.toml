@@ -1,0 +1,18 @@
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "accelerometer=(), camera=(), geolocation=(*), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()"
+    Content-Security-Policy = "default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://*.spline.design https://prod.spline.design https://maps.googleapis.com https://*.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: blob:; font-src 'self' data: https:; connect-src 'self' https://*.spline.design https://prod.spline.design wss://*.spline.design wss://prod.spline.design https://maps.googleapis.com https://*.google.com https://*.supabase.co https://dbjyymymjrcmcqgmehfk.supabase.co; frame-src 'self' https://*.spline.design https://prod.spline.design https://www.google.com https://maps.google.com; worker-src 'self' blob:; media-src 'self' https: blob:;"
